@@ -1,0 +1,38 @@
+@mixin desktop {
+    @media screen and (min-width: 1200px) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media screen and (max-width: 1199px) {
+        @content;
+    }
+}
+@mixin mobile {
+    @media screen and (min-width: 240px) and (max-width: 767px) {
+        @content;
+    }
+}
+@mixin paragraph {
+    color: $primaryTextColor;
+    font-family: $primaryFontFam;
+    font-size: 21px;
+}
+@mixin comments {
+    text-align: start;
+    color: $primaryTextColor;
+    font-family: $primaryFontFam;
+    font-size: 16px;
+}
+@mixin city {
+    text-align: center;
+    text-transform: capitalize;
+    color: $primaryTextColor;
+    font-family: $primaryFontFam;
+    font-size: 22px;
+}
+@mixin temperature {
+    @include city;
+    opacity: .7;
+    text-transform: uppercase;
+}

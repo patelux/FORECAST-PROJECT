@@ -1,0 +1,32 @@
+[ 
+    {
+        "id": 11,
+        "hrefLink":"https://www.facebook.com", 
+        "ariaLabel":"facebook", 
+        "linkIcon":"fa-brands fa-facebook-f"
+    },
+    {
+        "id": 12, 
+        "hrefLink":"https://twitter.com", 
+        "ariaLabel":"twitter", 
+        "linkIcon":"fa-brands fa-twitter"
+    },
+    {
+        "id": 14, 
+        "hrefLink":"https://www.instagram.com", 
+        "ariaLabel":"instagram", 
+        "linkIcon":"fa-brands fa-instagram"
+    },
+    {
+        "id": 15, 
+        "hrefLink":"https://www.facebook.com", 
+        "ariaLabel":"facebook", 
+        "linkIcon":"fa-brands fa-facebook-f"
+    },
+    {
+        "id": 16, 
+        "hrefLink":"https://twitter.com", 
+        "ariaLabel":"twitter", 
+        "linkIcon":"fa-brands fa-twitter"
+    }
+]   
