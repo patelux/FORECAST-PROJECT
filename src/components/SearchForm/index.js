@@ -38,30 +38,47 @@ export default function SearchForm({ userObj = {} }) {
 
     const onSubmitHandler = (e, data) => {
         console.log(data);
-        e.preventDefault();
+        // e.preventDefault();
         if (searchVal) {
             getResults();
         }
     }
-
-    const getResults = () => {
-        axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`).then((response) => {
-            console.log(response)
-            if(response.status === 200) {
-                weatherStore.addCurrentWeather(response.data);
-                // weatherStore.setTotalResults(response.data.totalResults)
-            }
-            response.status === 200 ? weatherStore.addCurrentWeather({}) : console.log("Forecast not found!")
-            .catch(error => console.error('Error fetching weather data:', error));
-        });
-    }
+    const getResults = async () => {
+        try {
+          const response = await axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`);
+          
+          if (response.status === 200) {
+            weatherStore.addCurrentWeather({});
+          } else {
+            console.log("City not found!");
+          }
+        } catch (error) {
+          if (error.response && error.response.status === 404) {
+            console.error('City not found!');
+          } else {
+            console.error('Error fetching weather data:', error);
+          }
+        }
+      };
+    // const getResults = () => {
+    //     axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`)
+    //     .then((response) => {
+    //         response.status === 200 ? weatherStore.addCurrentWeather({}) : console.log("City not found!")})
+    //         .catch(error => {
+    //             if (error.response && error.response.status === 404) {
+    //                 console.error('City not found!');
+    //               } else {
+    //                 console.error('Error fetching weather data:', error);
+    //               }
+    //     });
+    // }
 
     return (
         <div className="search">
             <Container>
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                 <Grid container spacing={{ xs: 2, md: 3 }} mt={{ xs: 0, md: 0}} className="search-list">
-                            <Grid item sx={{display: { xs: 'none', sm: 'inline' }}} sm={{ display: 'inline-block' }} className="search-item" >
+                            <Grid item sx={{display: { xs: 'none', sm: 'inline-block' }}} className="search-item" >
                             <p className="search-title">weather</p>
                             </Grid>
                             <Grid item xs={12} sm={8} className="search-item" id="input-wrapper">
