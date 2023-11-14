@@ -60,28 +60,17 @@ export default function SearchForm({ userObj = {} }) {
           }
         }
       };
-    // const getResults = () => {
-    //     axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`)
-    //     .then((response) => {
-    //         response.status === 200 ? weatherStore.addCurrentWeather({}) : console.log("City not found!")})
-    //         .catch(error => {
-    //             if (error.response && error.response.status === 404) {
-    //                 console.error('City not found!');
-    //               } else {
-    //                 console.error('Error fetching weather data:', error);
-    //               }
-    //     });
-    // }
+
 
     return (
         <div className="search">
             <Container>
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
-                <Grid container spacing={{ xs: 2, md: 3 }} mt={{ xs: 0, md: 0}} className="search-list">
+                <Grid container spacing={{ xs: 2, md: 3 }} mt={{ xs: 0, md: 0}}  className="search-list">
                             <Grid item sx={{display: { xs: 'none', sm: 'inline-block' }}} className="search-item" >
                             <p className="search-title">weather</p>
                             </Grid>
-                            <Grid item xs={12} sm={8} className="search-item" id="input-wrapper">
+                            <Grid item xs={11} sm={8} className="search-item" id="input-wrapper">
                                 <TextField
                                     className="search-input"
                                     {...register("city_name", { minLength: 3 })}
