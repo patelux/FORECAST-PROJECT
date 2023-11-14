@@ -1,58 +1,168 @@
-import { useState, useEffect } from "react";
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+// import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+// import Button from '@mui/material/Button';
+import logo from '../../images/logo1.png';
+import MenuItem from '@mui/material/MenuItem';
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import PersonIcon from '@mui/icons-material/Person';
+import Face2Icon from '@mui/icons-material/Face2';
 
-const urlSocialLinks = './data/social.json';
+// const pages = ['Products', 'Pricing', 'Blog'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-export default function Header (){
-    const [searchResults, setSearchResults] = useState([]);    
-    useEffect(()=> {
-        getSocialList();
-    }, []);  
+function Header() {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [navList, setNavList] = useState([]);
+  const [socialList, setSocialList] = useState([]);
 
-    const getSocialList = () => {
-        fetch(urlSocialLinks)
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+  const getNavList = () => {
+    fetch('/data/navigation_en.json')
         .then(res => res.json())
-        .then(resp => {(resp) ? (setSearchResults(resp)) : (setSearchResults([]))
+        .then(resp => {
+            setNavList(resp)
         })
-        .catch(err => console.error(err.message))
-    }
-    let list;
-    if(searchResults.length) {
-        list = searchResults.map((item, index) => {
-            return (
-            <SocialLinks item={item} key={index}/>
-            )
+}
+const getSocialList = () => {
+    fetch('./data/social.json')
+        .then(res => res.json())
+        .then(resp => {
+            setSocialList(resp);
         })
-    }
+}
+useEffect(()=> {
+    getNavList();
+    getSocialList();
+}, []);
 
- return (
-    <div className="header">
-                <div className="container">
-                    <nav className="main_nav">
-                        <div className="logo-wrapper">
-                            <a href="/" className="logo_link">
-                                <img src="logo.svg" alt="" className="logo"/>
-                            </a>
-                        </div>
-                        <h2 className="section-title">FORECAST SEARCH</h2>
-                        <div className="social-links-wrapper">
-                        <ul className="social-link-list">
-                                {list}
-                            </ul>
-                        </div>
-                    </nav>       
+const navListRender = navList.map((item, index) => {
+    const url = item.id ? item.url+'/'+item.id : item.url;
+    return <li className="nav-item" key={index} onClick={handleCloseNavMenu}><NavLink to={url}className="nav_link"><span className="link-subtitle">{item.title}</span></NavLink>
+    </li>
+})
+
+const socialListRender = socialList.map((item, index) => {
+    let IconComponent;
+    switch (item.id) {
+        case 'facebook':
+            IconComponent = FacebookOutlinedIcon;
+            break;
+        case 'linkedin':
+            IconComponent = LinkedInIcon;
+            break;
+        case 'instagram':
+            IconComponent = InstagramIcon;
+            break;
+        default:
+            IconComponent = FacebookOutlinedIcon;
+            break;
+      }
+    
+    return <li key={index} className="social-link-item">
+        <a href={item.url} className="social-link" alt={item.id}><IconComponent sx={{ fontSize: 30 }} md={{ fontSize: 34 }} lg={{ fontSize: 40 }} color="primary"/></a>
+    </li>
+    }
+)
+
+  return (
+    <AppBar position="static" className='header'>
+      <Container maxWidth="xl" >
+        <nav className="main_nav">
+           <div className="logo-wrapper">
+                <a href="/" className="logo_link">
+                    <img src={logo} alt="logo" className="logo" />
+                </a>
+            </div>  
+            <div className="login-wrapper">
+                <div id="login-statusbar" className="login-statusbar active">
+                    <a id="login-link" className="login-link" href="/" >
+                        <PersonIcon fontSize= "large" className="login-img"/>
+                        <span id="login-username" className="login-username">Sign in</span>
+                    </a>
                 </div>
-            </div> 
- );
-}
+                <div id="account-statusbar" className="account-statusbar">
+                    <a id="account-link" className="account-link" href="/" >
+                        <Face2Icon fontSize= "large" className="account-img"/>
+                        <span id="account-username" className="account-username">Name</span>
+                    </a>
+                </div>
+            </div>
 
-function SocialLinks (props) {
-    const { hrefLink, ariaLabel, linkIcon } = props.item;
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' }, order: {xs: -2} }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="black"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', sm: 'none' },
+              }}
+            >
+              {navList.map((page, index) => (
+                <MenuItem key={index} onClick={handleCloseNavMenu}><NavLink to={page.url}className="nav_link"> <Typography textAlign="center"><span>{page.title}</span></Typography></NavLink>                 
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+           
 
-    return (
-        <li className="social-link-item">
-            <a href={hrefLink} aria-label={ariaLabel} className="social-link" target="_blank" rel="noopener noreferrer">
-            <i className={`${linkIcon} icon-social-link`}></i>
-            </a>
-        </li>
-    )
+          <Box  className="nav-list_wrapper" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
+                <ul className="nav_list">
+                    {navListRender}
+                </ul>
+          </Box>
+
+            <div className="social-links-wrapper">
+                <ul className="social-link-list">
+                    {socialListRender}
+                </ul>
+            </div>
+
+          {/* <Box  className="nav-list_wrapper"sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
+
+          </Box> */}
+
+          {/* login button */}
+
+        </nav>
+      </Container>
+    </AppBar>
+  );
 }
+export default Header;

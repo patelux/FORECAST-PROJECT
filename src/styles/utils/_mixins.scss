@@ -9,8 +9,37 @@
     }
 }
 @mixin mobile {
-    @media screen and (min-width: 240px) and (max-width: 767px) {
+    @media screen and (min-width: 0px) and (max-width: 767px) {
         @content;
+    }
+}
+@mixin smallmobile {
+    @media screen and (min-width: 0px) and (max-width: 399px) {
+        @content;
+    }
+}
+@mixin h1 {
+    font-size: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    @include tablet{
+        font-size: 26px;
+    }
+}
+@mixin h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    @include tablet{
+        font-size: 20px;
+    }
+}
+@mixin menuText {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    @include tablet{
+        font-size: 16px;
     }
 }
 @mixin paragraph {
@@ -35,4 +64,21 @@
     @include city;
     opacity: .7;
     text-transform: uppercase;
+}
+@mixin contacts{
+    color: $secondaryBgColor;
+    font-size: 26px;
+    font-weight: 500;
+    text-transform: capitalize;
+    @include tablet{
+        font-size: 20px;
+    }
+}
+@mixin copyright {
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+    @include mobile{
+        font-size: 12px;
+    }
 }
