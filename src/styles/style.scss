@@ -8,7 +8,6 @@
 
 
 .page_wrapper{
-    max-width: 1177px;
     margin: 0px auto;
 }
 
@@ -24,6 +23,7 @@ body.fixed{
 header {
     &.css-hip9hq-MuiPaper-root-MuiAppBar-root {
     background: $primaryBgColor;
+    box-shadow: none;
     }
 }
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation4.MuiAppBar-root.MuiAppBar-colorPrimary.MuiAppBar-positionStatic.header.css-1x7skt0 {
