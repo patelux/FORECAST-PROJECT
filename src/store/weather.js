@@ -7,12 +7,12 @@ export const weatherStore = {
         totalResults = val;
         emitChange();
     },
-    addCurrentWeather(currentWeatherArr) {
-        currentWeather = {currentWeatherArr};
+    addCurrentWeather(currentWeatherObj) {
+        currentWeather = {...currentWeather,...currentWeatherObj};
         emitChange();
     },
     resetStore() {
-        currentWeather = [];
+        currentWeather = {};
         emitChange();
     },
     subscribe(listener) {

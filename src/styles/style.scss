@@ -1,10 +1,10 @@
+@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick-theme.css";
 @import './base/reset';
-
 @import './utils/variables';
-
 @import './utils/mixins';
-
 @import './components/container';
+@import './DailyWeatherItem.scss';
 
 
 .page_wrapper{
@@ -116,7 +116,6 @@ header {
     color: inherit;
     font-weight: 700;
     font-size: 13px;
-    // line-height: 4rem;
     text-decoration: none;
     min-width: unset;
     padding-left: 0;
@@ -244,6 +243,9 @@ header {
         }
 
 // mobile-menu underline
+
+
+
 header.header .css-hip9hq-MuiPaper-root-MuiAppBar-root{
     background-color: transparent;
 }
@@ -352,7 +354,7 @@ div.search {
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
-        padding: 10px 0px;
+        padding-top: 30px;
     }
     .search-item {
         padding-top: 0;
@@ -377,7 +379,16 @@ div.search {
         }
     }
 }
-
+span.error{
+    display: block;
+    height: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(255, 0 , 0);
+    text-align: center;
+    margin: 0 auto;
+    padding: 5px 0px 5px 0px;
+}
 body main .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline{
     border-color: none;
     border: 2px solid #FFF;
