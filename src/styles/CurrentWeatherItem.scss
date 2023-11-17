@@ -1,0 +1,254 @@
+.current-forecast {
+    .wr-day-container
+    p {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 500;
+        margin-bottom: 10px;
+        color:rgb(21, 50, 113);
+    }
+
+    .wr-location {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 58px;
+        color: $secondaryTextColor;
+        padding: 24px 24px 0px;
+        margin-bottom: 16px;
+        @include mobile{
+            flex-direction: row;
+            justify-content: center;
+            padding: 8px 8px 0px;
+        }
+    }
+    .wr-location__name {
+        font-size: 26px;
+        color: $secondaryTextColor;
+        @include mobile{
+            font-size: 18px;
+        }
+        .location, .date{
+        font-size: 18px;
+        margin-left: 16px;
+        @include mobile{
+            font-size: 16px;
+        }
+        }
+
+    }
+    .wr-location__overview{
+        font-size: 18px;
+        text-transform: uppercase;
+        text-align: center;
+        color: $secondaryTextColor;
+        background-color: $accentColor;
+        border-radius: 8px;
+        padding: 8px 10px;
+        transition: all .5s ease;
+        &:hover, &:focus{
+            color: rgba($secondaryTextColor, 0.7);
+            background-color: $btnHoverColor;
+        }
+        
+    }
+    .wr-day-carousel__item {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        background-color: #fff;
+        min-height: 188px;
+        min-width: 406px;
+        width: 100%;
+        padding: 30px 30px;
+        margin: 0;
+        &:before{
+            content: '';
+            display: block;
+            position: absolute;
+            height: 8px;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba($accentColorTempretureHigh, 0.6);
+            transition: background-color 0.5s ease;
+        }
+        &:hover, &:focus{
+            &:before{
+                background-color: rgba($accentColorTempretureHigh, 1);
+            }
+            .wr-date__longish::after{
+                width: 100%;
+            }
+        }
+        .wr-day__content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            color: #141414;
+            transition: width 5s ease;
+        }
+        .wr-day__title {
+            display: flex;
+            gap: 20px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .wr-date {
+            font-size: 15px;
+        }
+        .wr-sunrise{
+            display: flex;
+            flex-direction: row;
+        }
+        .wr-sunrise__description{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start ;
+        }
+    }
+
+    .wr-date__long {
+        display: none;
+    }
+
+    .wr-date__longish {
+        position: relative;
+        display: inline-block;
+        &::after{
+            content: "";
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            width: 0;
+            background-color: #141414;
+            transition: width 0.3s ease;
+        }
+    }
+    .wr-day__body{
+        height: 100%;
+    }
+    .wr-day__details-container {
+        width: 100%;
+        height: 100%;
+        margin-right: 0;
+        position: relative;
+    }
+    .wr-day__details {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        height: 100%;
+        margin-right: 0;
+    }
+    .wr-day__details__weather-type-description {
+        font-size: 18px;
+        line-height: 21px;
+        height: 100%;
+        overflow: hidden;
+        display: none;
+        margin-left: 3.5rem;
+        padding: 8px 0px;
+    }
+    .active .wr-day__details__weather-type-description {
+        font-size: 21px;
+        display: block;
+    }
+    .wr-day__weather-type {
+        display: block;
+    }
+    // .wr-weather-type--day {
+    // }
+    .wr-weather-type__text {
+        display: none;
+    }
+    // --------------------
+    .wr-weather-type__icon {
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        background-color: transparent;
+        color: #141414;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .wr-day__temperature {
+        margin-left: 0;
+    }
+    .active .wr-day-temperature {
+    position: relative;
+    &::after{
+        content: '';
+        position: absolute;
+        display: block;
+        width: 1px;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        right: -20px;
+        background-color: #141414;
+    }
+    }
+
+    .wr-day-temperature__high {
+        text-align: right;
+        margin-bottom: 10px;
+    }
+    .wr-day-temperature__high-value {
+        font-size: 14px;
+        line-height: 1.2;
+        font-weight: bold;
+        text-align: right;
+    }
+    .active .wr-day-temperature__high-value {
+        font-size: 18px;
+    }
+
+    .wr-day-temperature__low {
+        text-align: center;
+    }
+    .wr-day-temperature__low-value {
+        font-size: 14px;
+        line-height: 1.2;
+        font-weight: normal;
+        text-align: right;
+    }
+    .active .wr-day-temperature__low-value {
+        font-size: 18px;
+    }
+}
+    // .wr-day__wind-speed {
+    // }
+    // .wr-wind-speed {
+    // }
+    // .wr-hide-visually {
+    // }
+    // .wr-wind-speed__description {
+    // }
+    // .wr-wind-speed__value {
+    // }
+    // .wr-wind-speed__icon {
+    // }
+    // .wr-day__weather-type-description-container {
+    // }
+    // .wr-day__weather-type-description {
+    // }
+    // .wr-day__temperature-bar {
+    // }
+
+

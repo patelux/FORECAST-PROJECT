@@ -1,22 +1,31 @@
-// .wr-forecast {
-//     background-color: #fff;
-
-// }
+.wr-forecast {
+    .wr-day-container
+    p {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 500;
+        margin-bottom: 10px;
+        color:#141414;
+ }
+}
 .wr-day-container {
     font-size: 1rem;
+    min-height: 274px;
     background-color: #5a5a5a;
     background-image: url(../images/day/sunny-day-desktop.jpg);
     background-repeat: no-repeat;
     background-position: center top;
-    margin-bottom: 1rem;
     background-size: cover;
     @include tablet{
+        min-height: 244px;
         background-image: url(../images/day/sunny-day-tablet.jpg);
     }
     @include mobile{
+        min-height: 290px;
         background-image: url(../images/day/sunny-day-mobile.jpg);
     }
     @include smallmobile{
+        min-height: 234px;
         background-image: url(../images/day/sunny-day-smallmobile.jpg);     
     }
 &.clouds{
@@ -110,7 +119,7 @@
     width: 108px;
     background-color:$sliderItemsBgColor;
     padding-bottom: 6px;
-    margin-top: 54px;
+    margin-top: 94px;
     border-right: 1px solid rgba(0,0,0,.12);
     &:before{
         content: '';
@@ -135,7 +144,8 @@
     .wr-day__content {
         display: block;
         height: 100%;
-        padding: 8px 8px 14px;
+        padding: 14px 14px 14px;
+        // padding: 8px 8px 14px;
         margin: 0px;
         color: #141414;
         transition: width 5s ease;
@@ -148,12 +158,13 @@
         font-size: 15px;
     }
     &.active {
-        min-height: 148px;
-        width: 406px;
+        min-height: 188px;
+        // min-width: 406px;
         padding-bottom: 0px;
         padding-top: 8px;
         margin-top: 0px;
         bottom: -14px;
+        z-index: 777;
         &:before{
             content: '';
             display: block;
@@ -176,10 +187,10 @@
             transition: width 5s ease;
         }
         .wr-day__title {
-            font-size: 26px;
+            font-size: 16px;
         }
         .wr-date {
-            font-size: 26px;
+            font-size: 16px;
         }
 
 }}
@@ -278,26 +289,26 @@ position: relative;
     margin-bottom: 10px;
 }
 .wr-day-temperature__high-value {
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 1.2;
     font-weight: bold;
     text-align: right;
 }
 .active .wr-day-temperature__high-value {
-    font-size: 26px;
+    font-size: 18px;
 }
 
 .wr-day-temperature__low {
     text-align: center;
 }
 .wr-day-temperature__low-value {
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 1.2;
     font-weight: normal;
     text-align: right;
 }
 .active .wr-day-temperature__low-value {
-    font-size: 26px;
+    font-size: 18px;
 }
 // .wr-day__wind-speed {
 // }
@@ -334,7 +345,7 @@ padding: 0 30px
     z-index: 10;
     font-size: 0;
     width: 32px;
-    height: calc(100% - 54px);
+    height: calc(100% - 94px);
     color: #fff;
     background-color: #149edc;
     &.slick-prev{

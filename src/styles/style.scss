@@ -5,6 +5,7 @@
 @import './utils/mixins';
 @import './components/container';
 @import './DailyWeatherItem.scss';
+@import './CurrentWeatherItem.scss';
 
 
 .page_wrapper{
@@ -347,7 +348,7 @@ header.header .css-hip9hq-MuiPaper-root-MuiAppBar-root{
 // Search
 div.search {
     background-color: $accentColor;
-    margin-bottom: 100px;
+
     .MuiGrid-container {
         min-height: 64px;
         display: flex;
@@ -396,7 +397,7 @@ body main .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root .MuiOutlinedInput
     transition: all $transitionFunc;  
 }
 body main .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    border: 2px solid #067eb3;
+    border: 2px solid $btnHoverColor;
     border-radius: 0;
 }
 button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.search-btn.css-sghohy-MuiButtonBase-root-MuiButton-root{
@@ -405,7 +406,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
     background-color: $accentColor;
     transition: all $transitionFunc;
     &:focus, &:hover{
-        background-color: #067eb3;
+        background-color: $btnHoverColor;
         svg{
             transform: scale(1.1);
         }

@@ -1,14 +1,31 @@
-import DailyWeatherItem from "../DailyWeatherItem"
+import React from "react";
 import { useSyncExternalStore } from 'react';
+import { useState, useEffect } from 'react';
 import { weatherStore  } from '../../store/weather.js';
+import DailyWeatherItem from "../DailyWeatherItem";
+import CurrentWeatherItem from "../CurrentWeatherItem/index.js";
+
 export default function DailyWeatherList(){
     const weatherStoreCurrent = useSyncExternalStore(weatherStore.subscribe, weatherStore.getSnapshot);
-   
+
+    const [containerClassName, setContainerClassName] = useState('wr-day-container');
+    const [timeOfDay, setTimeOfDay] = useState('day');
+
+// класс для бекграунда секции
+    useEffect(() => {
+        setTimeOfDay(timeOfDay);
+        setContainerClassName(containerClassName);
+      }, [containerClassName,timeOfDay]);
 
     return(
         <>
-        <h2>Daily Forecast !!!!!</h2>
-        { Object.keys(weatherStoreCurrent).length !==0 ? <DailyWeatherItem /> : <p>Forecast not found!!</p> }
+        <div className="wr-forecast" id="wr-forecast" lang="en">
+        <div className={`${containerClassName} ${timeOfDay}`}>
+        { Object.keys(weatherStoreCurrent).length !==0 ? <CurrentWeatherItem containerClassName={containerClassName} setContainerClassName={setContainerClassName} timeOfDay={timeOfDay} setTimeOfDay={setTimeOfDay}/> : <p>Current Forecast not found!!</p> }     
+
+        { Object.keys(weatherStoreCurrent).length !==0 ? <DailyWeatherItem containerClassName={containerClassName} timeOfDay={timeOfDay} /> : <p>5-days Forecast not found!!</p> }
+          </div>
+         </div>
         </>
     )
 }
