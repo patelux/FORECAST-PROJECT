@@ -7,12 +7,16 @@ import {
     InputAdornment
 } from "@mui/material";
 import { useRef, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import { weatherStore } from '../../store/weather.js';
+import { weatherDailyStore } from '../../store/weatherDaily.js';
 import SearchIcon from '@mui/icons-material/Search';
 
 
 const MY_API_KEY = '5be78af818ee7dcfc981e54df16594ea';
 const API_URL = `https:/api.openweathermap.org/data/2.5/weather`;
+const MY_API_KEY_DAILY = '6937530a137795579f942882f64a8f1a';
+const API_URL_DAILY = `https:/api.openweathermap.org/data/2.5/forecast`;
 
 export default function SearchForm () {
     const inputRef = useRef(null);
@@ -20,9 +24,13 @@ export default function SearchForm () {
     const [inputValError, setInputValError] = useState('');
 
     
+    // 123456789
+    const weatherStoreCurrent = useSyncExternalStore(weatherStore.subscribe, weatherStore.getSnapshot);
+
+    console.log(weatherStoreCurrent);
+    
     const handleChange = (e) => {
         const inputValue = e.target.value;
-        
         if (inputValue.length !== 0 && !/^[A-Za-z]+$/.test(inputValue) ){
             setInputValError('Only letters are allowed!');
         }
@@ -53,8 +61,10 @@ export default function SearchForm () {
           const response = await axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`);
           if (response.status === 200) {
             weatherStore.addCurrentWeather(response.data);
+            getDailyResults(response.data.coord.lon, response.data.coord.lat) 
           } 
           weatherStore.addCurrentWeather({});
+          weatherDailyStore.addDailyWeather([]);
         } catch (error) {
           if (error.response && error.response.status === 404) {
             setInputValError('City not found! Try again...')
@@ -63,7 +73,19 @@ export default function SearchForm () {
           }
         }
       };
-
+      // DAILY FETCH
+    const getDailyResults = async (lat, lon) => {
+      try {
+        const response = await axios.get(`${API_URL_DAILY}?appid=${MY_API_KEY_DAILY}&lat=${lat}&lon=${lon}`);
+  
+        if (response.status === 200) {
+          weatherDailyStore.addDailyWeather(response.data.list);
+        } 
+        weatherDailyStore.addDailyWeather([]);
+      } catch (error) {
+        console.error(error.message)
+        }
+      }
 
     return (
         <div className="search">

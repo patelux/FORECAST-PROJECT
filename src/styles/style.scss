@@ -244,9 +244,6 @@ header {
         }
 
 // mobile-menu underline
-
-
-
 header.header .css-hip9hq-MuiPaper-root-MuiAppBar-root{
     background-color: transparent;
 }
@@ -339,11 +336,6 @@ header.header .css-hip9hq-MuiPaper-root-MuiAppBar-root{
     transition: all 0.3s ease;
 }
 
-// hamburger
-
-// menu-open
-
-
 // MAIN 
 // Search
 div.search {
@@ -419,10 +411,108 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
         margin-right: -4px;
         margin-left: 0;
     }
-
 }
+
+// forecast curreny + 5-days + hourly
+.wr-day-container
+    p {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 500;
+        padding-bottom: 10px;
+        color:#141414;
+ }
+
+.wr-day-container {
+    font-size: 1rem;
+    min-height: 274px;
+    height: 76vh;
+    background-color: #5a5a5a;
+    background-image: url(../images/day/sunny-day-desktop.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    @include tablet{
+        min-height: 244px;
+        background-image: url(../images/day/sunny-day-tablet.jpg);
+    }
+    @include mobile{
+        min-height: 290px;
+        background-image: url(../images/day/sunny-day-mobile.jpg);
+    }
+    @include smallmobile{
+        min-height: 234px;
+        background-image: url(../images/day/sunny-day-smallmobile.jpg);     
+    }
+&.clouds{
+    background-image: url(../images/day/cloud-day-desktop.jpg);
+    @include tablet{
+        background-image: url(../images/day/cloud-day-tablet.jpg);
+    }
+    @include mobile{
+        background-image: url(../images/day/cloud-day-mobile.jpg);
+    }
+    @include smallmobile{
+        background-image: url(../images/day/cloud-day-smallmobile.jpg);     
+    }
+}
+&.rain{
+    background-image: url(../images/day/rain-day-desktop.jpg);
+    @include tablet{
+        background-image: url(../images/day/rain-day-tablet.jpg);
+    }
+    @include mobile{
+        background-image: url(../images/day/rain-day-mobile.jpg);
+    }
+    @include smallmobile{
+        background-image: url(../images/day/rain-day-smallmobile.jpg);     
+    }
+}
+&.snow{
+    background-image: url(../images/day/snow-day-desktop.jpg);
+    @include tablet{
+        background-image: url(../images/day/snow-day-tablet.jpg);
+    }
+    @include mobile{
+        background-image: url(../images/day/snow-day-mobile.jpg);
+    }
+    @include smallmobile{
+        background-image: url(../images/day/snow-day-smallmobile.jpg);     
+    }
+}
+&.sunny{
+    background-image: url(../images/day/sunny-day-desktop.jpg);
+    @include tablet{
+        background-image: url(../images/day/sunny-day-tablet.jpg);
+    }
+    @include mobile{
+        background-image: url(../images/day/sunny-day-mobile.jpg);
+    }
+    @include smallmobile{
+        background-image: url(../images/day/sunny-day-smallmobile.jpg);     
+    }
+}
+&.night {
+    background-color: #57606c;
+    background-image: url(../images/night/night-desktop.jpg);
+    @include tablet{
+        background-image: url(../images/night/night-tablet.jpg);
+    }
+    @include mobile{
+        background-image: url(../images/night/night-mobile.jpg);
+    }
+    @include smallmobile{
+        background-image: url(../images/night/night-smallmobile.jpg);     
+    }
+}}
+
 // footer section
 .footer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
     background-color: $secondaryBgColor;
     padding-top: 30px;
     padding-bottom: 30px;

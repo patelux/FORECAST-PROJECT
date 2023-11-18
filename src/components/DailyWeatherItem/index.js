@@ -12,21 +12,25 @@ import Slider from "react-slick";
 // import sunriseIcon from '../../images/sunrise.svg';
 // import windIcon from '../../images/wind.svg';
 
-export default function DailyWeatherItem(props){
-    
+export default function DailyWeatherItem(){
+    const weatherStoreDaily = useSyncExternalStore(weatherDailyStore.subscribe, weatherDailyStore.getSnapshot);
     const weatherStoreCurrent = useSyncExternalStore(weatherStore.subscribe, weatherStore.getSnapshot);
     const [weatherData, setWeatherData] = useState({
         currentCity: '',
         country: '',
         sunrise: null,
         sunset: null,
-        timezone: null
+        timezone: null,
+        lat: null,
+        lon: null
       });
-
-    const weatherStoreDaily = useSyncExternalStore(weatherDailyStore.subscribe, weatherDailyStore.getSnapshot);
+useEffect(() => {
+    
     console.log(weatherStoreDaily);
+}, [])
 
-    const resultsStoreLocal = useSyncExternalStore(weatherDailyStore.subscribe, weatherDailyStore.getResults);
+
+    // const resultsStoreLocal = weatherStoreDaily.length;
 
     const [isClicked, setIsClicked] = useState(false);
 
@@ -37,7 +41,9 @@ export default function DailyWeatherItem(props){
             country: weatherStoreCurrent.sys?.country || '',
             sunrise: weatherStoreCurrent.sys?.sunrise || null,
             sunset: weatherStoreCurrent.sys?.sunset || null,
-            timezone: weatherStoreCurrent.timezone || null
+            timezone: weatherStoreCurrent.timezone || null,
+            lat: weatherStoreCurrent.coord?.lon || null,
+            lon: weatherStoreCurrent.coord?.lat || null
           });
         };
       }, [weatherStoreCurrent]);
@@ -76,7 +82,7 @@ const onClickLinkHandler = (e) => {
 };
 const settings = {
       dots: false,
-      infinite: false,
+      infinite: true,
       speed: 500,
       slidesToShow: 5,
       slidesToScroll: 1,
@@ -124,8 +130,8 @@ const forecastList = everyFourthItem.map((item, index) => {
     const currentMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(formattedDate);
 
     return(
-    <div className="wr-day-carousel__item" key={index}>
-        <a href="/" 
+    <div className="wr-day-carousel__item" key={index} >
+        <a href='/'
             className="wr-day__content" onClick={onClickLinkHandler}>
             <div className="wr-day__title"
                 aria-label="">
@@ -186,24 +192,34 @@ const forecastList = everyFourthItem.map((item, index) => {
                     </div>
                 </div>
             </div>
-        </a>
+        </a>        
     </div>
     )
 })
 
     return(
-    <div className="wr-forecast" id="wr-forecast" lang="en">
-        <div className={`${props.containerClassName} ${props.timeOfDay}`}>
-            <Container>
-            <div className="wr-location">
-            <p>Results count: {resultsStoreLocal}</p>
+    // <div className="wr-forecast" id="wr-forecast" lang="en">
+    //     <div className={`${props.containerClassName} ${props.timeOfDay}`}>
+            <Container className="daily-forecast">
+              <div className="wr-location">
             <h1 id="wr-location-name-id" className="wr-location__name">
-              {weatherData.currentCity}, {weatherData.country}, {weatherData.lon}, {weatherData.lat}
+              {weatherData.currentCity}, {weatherData.country} 
             </h1>
-            <a href="/" className="wr-location__overview">
-              hourly forecast
-            </a>
+            <div className="btn-wrapper">
+              <a href="/" className="wr-location__overview">
+                current forecast  
+              </a> 
             </div>
+            </div>
+            {/* <div className="wr-location">
+            <p>Results count: {resultsStoreLocal}</p>
+           <h2 id="wr-location-name-id" className="wr-location__name">
+              {weatherData.currentCity}, {weatherData.country}, {weatherData.lon}, {weatherData.lat}
+            </h2>
+            <a href="/" className="wr-location__overview">
+              current forecast
+            </a>
+            </div> */}
 
             <div className="wr-day-carousel"> 
             <Slider {...settings}>
@@ -211,8 +227,8 @@ const forecastList = everyFourthItem.map((item, index) => {
             </Slider>
             </div>
             </Container>
-        </div>
-    </div>
+    //     </div>
+    // </div>
     )
 }
 

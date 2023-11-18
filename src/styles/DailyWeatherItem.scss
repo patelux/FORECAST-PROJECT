@@ -1,122 +1,47 @@
-.wr-forecast {
-    .wr-day-container
-    p {
-        text-align: center;
-        font-size: 26px;
-        font-weight: 500;
-        margin-bottom: 10px;
-        color:#141414;
- }
-}
-.wr-day-container {
-    font-size: 1rem;
-    min-height: 274px;
-    background-color: #5a5a5a;
-    background-image: url(../images/day/sunny-day-desktop.jpg);
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: cover;
-    @include tablet{
-        min-height: 244px;
-        background-image: url(../images/day/sunny-day-tablet.jpg);
-    }
-    @include mobile{
-        min-height: 290px;
-        background-image: url(../images/day/sunny-day-mobile.jpg);
-    }
-    @include smallmobile{
-        min-height: 234px;
-        background-image: url(../images/day/sunny-day-smallmobile.jpg);     
-    }
-&.clouds{
-    background-image: url(../images/day/cloud-day-desktop.jpg);
-    @include tablet{
-        background-image: url(../images/day/cloud-day-tablet.jpg);
-    }
-    @include mobile{
-        background-image: url(../images/day/cloud-day-mobile.jpg);
-    }
-    @include smallmobile{
-        background-image: url(../images/day/cloud-day-smallmobile.jpg);     
-    }
-}
-&.rain{
-    background-image: url(../images/day/rain-day-desktop.jpg);
-    @include tablet{
-        background-image: url(../images/day/rain-day-tablet.jpg);
-    }
-    @include mobile{
-        background-image: url(../images/day/rain-day-mobile.jpg);
-    }
-    @include smallmobile{
-        background-image: url(../images/day/rain-day-smallmobile.jpg);     
-    }
-}
-&.snow{
-    background-image: url(../images/day/snow-day-desktop.jpg);
-    @include tablet{
-        background-image: url(../images/day/snow-day-tablet.jpg);
-    }
-    @include mobile{
-        background-image: url(../images/day/snow-day-mobile.jpg);
-    }
-    @include smallmobile{
-        background-image: url(../images/day/snow-day-smallmobile.jpg);     
-    }
-}
-&.sunny{
-    background-image: url(../images/day/sunny-day-desktop.jpg);
-    @include tablet{
-        background-image: url(../images/day/sunny-day-tablet.jpg);
-    }
-    @include mobile{
-        background-image: url(../images/day/sunny-day-mobile.jpg);
-    }
-    @include smallmobile{
-        background-image: url(../images/day/sunny-day-smallmobile.jpg);     
-    }
-}
-&.night {
-    background-color: #57606c;
-    background-image: url(../images/night/night-desktop.jpg);
-    @include tablet{
-        background-image: url(../images/night/night-tablet.jpg);
-    }
-    @include mobile{
-        background-image: url(../images/night/night-mobile.jpg);
-    }
-    @include smallmobile{
-        background-image: url(../images/night/night-smallmobile.jpg);     
-    }
-}}
 
+.daily-forecast {
 .wr-location {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
     align-items: baseline;
-    justify-content: flex-start;
+    justify-content: space-between;;
     min-height: 58px;
     color: $secondaryTextColor;
     padding: 24px 16px 0px;
     margin-bottom: 16px;
 }
 .wr-location__name {
-    font-size: 30px;
+    font-size: 26px;
     color: $secondaryTextColor;
     margin-right: 16px;
 }
-.wr-location__overview{
-    font-size: 30px;
-    color: $secondaryTextColor;
-    margin-right: 16px;
-    background-color: transparent;
+.btn-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
-
+.btn-wrapper .wr-location__overview{
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    color: $secondaryTextColor;
+    background-color: $accentColor;
+    border-radius: 8px;
+    padding: 8px 10px;
+    transition: all .5s ease;
+    &:hover, &:focus{
+        color: rgba($secondaryTextColor, 0.7);
+        background-color: $btnHoverColor;
+    }
+    
+}
 .wr-day-carousel__item {
     position: relative;
     min-height: 102px;
-    width: 108px;
+    // width: 108px;
     background-color:$sliderItemsBgColor;
     padding-bottom: 6px;
     margin-top: 94px;
@@ -163,7 +88,7 @@
         padding-bottom: 0px;
         padding-top: 8px;
         margin-top: 0px;
-        bottom: -14px;
+        bottom: -19px;
         z-index: 777;
         &:before{
             content: '';
@@ -183,6 +108,7 @@
             }
         }
         .wr-day__content {
+            min-height: 180px;
             padding: 16px 16px 16px;
             transition: width 5s ease;
         }
@@ -233,17 +159,19 @@
     margin-right: 0;
 }
 .wr-day__details__weather-type-description {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 21px;
     height: 100%;
     overflow: hidden;
     display: none;
-    margin-left: 3.5rem;
+    // margin-left: 3.5rem;
     padding: 8px 0px;
 }
 .active .wr-day__details__weather-type-description {
-    font-size: 21px;
+    font-size: 16px;
     display: block;
+    margin-left: 20px;
+    text-align: right;
 }
 .wr-day__weather-type {
     display: block;
@@ -278,7 +206,7 @@ position: relative;
     height: 100%;
     top: 0;
     bottom: 0;
-    right: -20px;
+    right: -15px;
     background-color: #141414;
 }
 
@@ -384,5 +312,5 @@ padding: 0 30px
         }
     }
 }
-
+}
 // arrow w*h = 32*94 noactive bgc rgba(230,232,234,.3), color: rgba(58,60,62,.3); svg 16*16
