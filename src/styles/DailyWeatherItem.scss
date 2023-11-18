@@ -44,8 +44,9 @@
     // width: 108px;
     background-color:$sliderItemsBgColor;
     padding-bottom: 6px;
-    margin-top: 94px;
+    // margin-top: 94px;
     border-right: 1px solid rgba(0,0,0,.12);
+    margin: 94px 0 auto 0;
     &:before{
         content: '';
         display: block;

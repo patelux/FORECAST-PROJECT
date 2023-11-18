@@ -1,21 +1,18 @@
-import axios from "axios";
 import { useSyncExternalStore } from 'react';
 import { weatherStore  } from '../../store/weather.js';
-import { weatherDailyStore } from '../../store/weatherDaily.js';
+
 import { useState, useEffect } from 'react';
 import React from "react";
 import { Container } from "@mui/material";
 import sunriseIcon from '../../images/sunrise.svg';
 import windIcon from '../../images/wind.svg';
 
-// const MY_API_KEY = '6937530a137795579f942882f64a8f1a';
-// const API_URL = `https:/api.openweathermap.org/data/2.5/forecast`;
+
 
 export default function CurrentWeatherItem(props){
     
     const weatherStoreCurrent = useSyncExternalStore(weatherStore.subscribe, weatherStore.getSnapshot);
-    // console.log(weatherStoreCurrent)
-    // copy to weatherlist
+
     const [weatherData, setWeatherData] = useState({
         currentCity: '',
         country: '',
@@ -33,8 +30,6 @@ export default function CurrentWeatherItem(props){
         lat: null,
         timezone: null
       });
-    // const [containerClassName, setContainerClassName] = useState('wr-day-container');
-    // const [timeOfDay, setTimeOfDay] = useState('');
     
     useEffect(() => {
         if (weatherStoreCurrent) {
@@ -83,8 +78,7 @@ export default function CurrentWeatherItem(props){
         } else if (hours >= 18 || hours < 6) {
           timeOfDay = 'night';
         }
-        // setTimeOfDay(timeOfDay);
-        // setContainerClassName(containerClassName); 
+
         props.setTimeOfDayLocal(timeOfDay);
         props.setContainerClassNameLocal(containerClassName);
       }, [weatherData, props]);
@@ -94,7 +88,7 @@ function temperatureInCelcius(temp) {
     return Math.round(temp - 273.15);
 }
 // расчет даты
-// copy в weatherList
+
 const getOrdinalSuffix = (day) => {
     if (day >= 11 && day <= 13) {
       return `${day}th`;
@@ -121,39 +115,19 @@ const currentDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
 const currentHours = formattedDate.getUTCHours();
 const currentMinutes = formattedDate.getUTCMinutes();
 const formattedCurrentTime = `${currentHours < 10 ? '0' : ''}${currentHours}:${currentMinutes < 10 ? '0' : ''}${currentMinutes}`;
-// парсинг данных
 
+// парсинг данных
 const temperature_max = temperatureInCelcius(weatherData.temp_max);
 const temperature_min = temperatureInCelcius(weatherData.temp_min);
 // const feelsLike = temperatureInCelcius(feels_like);
 const iconUrl = `https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`;
 
-
-// copy to weatherlist
 // get 5-day forecast ↓
 const onClickHandler = (e) => {
     e.preventDefault();
     console.log('click click 5-day forecast');
-    // if (weatherData.lon !== null && weatherData.lat !== null) {
-    //     weatherDailyStore.resetStore();
-    //     getDailyResults();
     }
 
-
-// const getDailyResults = async () => {
-//     try {
-//       const response = await axios.get(`${API_URL}?appid=${MY_API_KEY}&lat=${weatherData.lat}&lon=${weatherData.lon}`);
-
-//       if (response.status === 200) {
-//         weatherDailyStore.addDailyWeather(response.data.list);
-//       } 
-//       weatherDailyStore.addDailyWeather([]);
-//     } catch (error) {
-//       console.error(error.message)
-//       }
-//     }
-
-// get 5-day forecast ↑
     return (  
             <Container className="current-forecast">
             <div className="wr-location">
@@ -245,5 +219,3 @@ const onClickHandler = (e) => {
             </Container>
     )
 }
-
-// 

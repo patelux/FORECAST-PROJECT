@@ -23,6 +23,7 @@ export default function DailyWeatherList(){
         <>
         <div className="wr-forecast" id="wr-forecast" lang="en">
         <div className={`${containerClassName} ${timeOfDay}`}>
+        
         { Object.keys(weatherStoreCurrent).length > 0 ? <CurrentWeatherItem  setContainerClassNameLocal={setContainerClassName} setTimeOfDayLocal={setTimeOfDay}/> : <p>Current Forecast not found!!</p> }     
 
         { (weatherStoreDaily).length > 0 ? <DailyWeatherItem containerClassName={containerClassName} timeOfDay={timeOfDay} /> : <p>5-days Forecast not found!!</p> }

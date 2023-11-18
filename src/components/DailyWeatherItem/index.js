@@ -24,13 +24,6 @@ export default function DailyWeatherItem(){
         lat: null,
         lon: null
       });
-useEffect(() => {
-    
-    console.log(weatherStoreDaily);
-}, [])
-
-
-    // const resultsStoreLocal = weatherStoreDaily.length;
 
     const [isClicked, setIsClicked] = useState(false);
 
@@ -198,8 +191,6 @@ const forecastList = everyFourthItem.map((item, index) => {
 })
 
     return(
-    // <div className="wr-forecast" id="wr-forecast" lang="en">
-    //     <div className={`${props.containerClassName} ${props.timeOfDay}`}>
             <Container className="daily-forecast">
               <div className="wr-location">
             <h1 id="wr-location-name-id" className="wr-location__name">
@@ -227,8 +218,6 @@ const forecastList = everyFourthItem.map((item, index) => {
             </Slider>
             </div>
             </Container>
-    //     </div>
-    // </div>
     )
 }
 
