@@ -4,13 +4,7 @@ import { weatherStore  } from '../../store/weather.js';
 import { weatherDailyStore } from '../../store/weatherDaily.js';
 import { useState, useEffect } from 'react';
 import React from "react";
-import {
-    Container
-} from "@mui/material";
 import Slider from "react-slick";
-// import { nanoid } from 'nanoid';
-// import sunriseIcon from '../../images/sunrise.svg';
-// import windIcon from '../../images/wind.svg';
 
 export default function DailyWeatherItem(){
     const weatherStoreDaily = useSyncExternalStore(weatherDailyStore.subscribe, weatherDailyStore.getSnapshot);
@@ -116,6 +110,7 @@ const forecastList = everyFourthItem.map((item, index) => {
     const temperature_min = temperatureInCelcius(item.main?.temp_min);
     const iconUrl = `https://openweathermap.org/img/wn/${item.weather[0]?.icon}@2x.png`;
     const dateTimeMillis = (item.dt + weatherData.timezone) * 1000;
+    // const dateTimeMillis = (item.dt) * 1000;
     const formattedDate = new Date(dateTimeMillis);
     const currentDate =   getOrdinalSuffix(formattedDate.getUTCDate());
     const currentDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(formattedDate);
@@ -191,33 +186,11 @@ const forecastList = everyFourthItem.map((item, index) => {
 })
 
     return(
-            <Container className="daily-forecast">
-              <div className="wr-location">
-            <h1 id="wr-location-name-id" className="wr-location__name">
-              {weatherData.currentCity}, {weatherData.country} 
-            </h1>
-            <div className="btn-wrapper">
-              <a href="/" className="wr-location__overview">
-                current forecast  
-              </a> 
-            </div>
-            </div>
-            {/* <div className="wr-location">
-            <p>Results count: {resultsStoreLocal}</p>
-           <h2 id="wr-location-name-id" className="wr-location__name">
-              {weatherData.currentCity}, {weatherData.country}, {weatherData.lon}, {weatherData.lat}
-            </h2>
-            <a href="/" className="wr-location__overview">
-              current forecast
-            </a>
-            </div> */}
-
-            <div className="wr-day-carousel"> 
-            <Slider {...settings}>
-                {forecastList}
-            </Slider>
-            </div>
-            </Container>
+    <div className="wr-day-carousel"> 
+       <Slider {...settings}>
+          {forecastList}
+      </Slider>
+    </div>
     )
 }
 

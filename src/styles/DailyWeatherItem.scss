@@ -1,51 +1,13 @@
-
 .daily-forecast {
-.wr-location {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    align-items: baseline;
-    justify-content: space-between;;
-    min-height: 58px;
-    color: $secondaryTextColor;
-    padding: 24px 16px 0px;
-    margin-bottom: 16px;
-}
-.wr-location__name {
-    font-size: 26px;
-    color: $secondaryTextColor;
-    margin-right: 16px;
-}
-.btn-wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-.btn-wrapper .wr-location__overview{
-    font-size: 16px;
-    text-transform: uppercase;
-    text-align: center;
-    color: $secondaryTextColor;
-    background-color: $accentColor;
-    border-radius: 8px;
-    padding: 8px 10px;
-    transition: all .5s ease;
-    &:hover, &:focus{
-        color: rgba($secondaryTextColor, 0.7);
-        background-color: $btnHoverColor;
-    }
-    
-}
+// .wr-location {
+//     align-items: baseline;
+// }
 .wr-day-carousel__item {
     position: relative;
     min-height: 102px;
-    // width: 108px;
     background-color:$sliderItemsBgColor;
-    padding-bottom: 6px;
-    // margin-top: 94px;
     border-right: 1px solid rgba(0,0,0,.12);
+    padding-bottom: 6px;
     margin: 94px 0 auto 0;
     &:before{
         content: '';
@@ -56,6 +18,7 @@
         bottom: 0;
         left: 0;
         right: 0;
+        z-index: 2;
         background-color: rgba($accentColorTempretureHigh, 0.6);
         transition: background-color 0.5s ease;
     }
@@ -70,14 +33,18 @@
     .wr-day__content {
         display: block;
         height: 100%;
-        padding: 14px 14px 14px;
-        // padding: 8px 8px 14px;
-        margin: 0px;
         color: #141414;
+        padding: 14px 14px 14px;
+        margin: 0px;
         transition: width 5s ease;
     }
     .wr-day__title {
         font-size: 15px;
+        display: flex;
+        gap: 20px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
         margin-bottom: 8px;
     }
     .wr-date {
@@ -85,7 +52,6 @@
     }
     &.active {
         min-height: 188px;
-        // min-width: 406px;
         padding-bottom: 0px;
         padding-top: 8px;
         margin-top: 0px;
@@ -119,6 +85,25 @@
         .wr-date {
             font-size: 16px;
         }
+        .wr-day__details__weather-type-description {
+            font-size: 16px;
+            display: block;
+            margin-left: 20px;
+            text-align: right;
+        }
+        .active .wr-day-temperature {
+            position: relative;
+            &::after{
+                content: '';
+                position: absolute;
+                display: block;
+                width: 1px;
+                height: 100%;
+                top: 0;
+                bottom: 0;
+                right: -15px;
+                background-color: #141414;
+            }
 
 }}
 
@@ -142,75 +127,54 @@
         transition: width 0.3s ease;
     }
 }
-.wr-day__body{
-    height: 100%;
-}
-.wr-day__details-container {
-    width: 100%;
-    height: 100%;
-    margin-right: 0;
-    position: relative;
-}
-.wr-day__details {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    height: 100%;
-    margin-right: 0;
-}
-.wr-day__details__weather-type-description {
-    font-size: 14px;
-    line-height: 21px;
-    height: 100%;
-    overflow: hidden;
-    display: none;
-    // margin-left: 3.5rem;
-    padding: 8px 0px;
-}
-.active .wr-day__details__weather-type-description {
-    font-size: 16px;
-    display: block;
-    margin-left: 20px;
-    text-align: right;
-}
-.wr-day__weather-type {
-    display: block;
-}
-// .wr-weather-type--day {
-// }
-.wr-weather-type__text {
-    display: none;
-}
-// --------------------
-.wr-weather-type__icon {
-    display: inline-block;
-    width: 48px;
-    height: 48px;
-    background-color: transparent;
-    color: #141414;
-    img{
+    .wr-day__body{
         height: 100%;
-        width: 100%;
     }
-}
-.wr-day__temperature {
-    margin-left: 0;
-}
-.active .wr-day-temperature {
-position: relative;
-&::after{
-    content: '';
-    position: absolute;
-    display: block;
-    width: 1px;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    right: -15px;
-    background-color: #141414;
-}
+    .wr-day__details-container {
+        width: 100%;
+        height: 100%;
+        margin-right: 0;
+        position: relative;
+    }
+    .wr-day__details {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
 
+        height: 100%;
+        margin-right: 0;
+    }
+    .wr-day__details__weather-type-description {
+        font-size: 14px;
+        line-height: 21px;
+        height: 100%;
+        overflow: hidden;
+        display: none;
+        padding: 8px 0px;
+    }
+    .wr-day__weather-type {
+        display: block;
+    }
+    // .wr-weather-type--day {
+    // }
+    .wr-weather-type__text {
+        display: none;
+    }
+// --------------------
+    .wr-weather-type__icon {
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        background-color: transparent;
+        color: #141414;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .wr-day__temperature {
+        margin-left: 0;
+    }
 }
 
 .wr-day-temperature__high {
@@ -251,67 +215,60 @@ position: relative;
 // }
 // .wr-wind-speed__icon {
 // }
-// .wr-day__weather-type-description-container {
-// }
-// .wr-day__weather-type-description {
-// }
-// .wr-day__temperature-bar {
-// }
-// .arrow--next {
-// }
 
-// slick-slider
-.slick-slider{
-padding: 0 30px
-}
-.slick-track{
-    position: relative;
-}
-.slick-arrow{
-    position: absolute;
-    top: 100%;
-    transform: translateY(-100%);
-    z-index: 10;
-    font-size: 0;
-    width: 32px;
-    height: calc(100% - 94px);
-    color: #fff;
-    background-color: #149edc;
-    &.slick-prev{
-        left: -1px;
-        background-image: url('../images/arrow-left.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 94px;
-        transition: all $transitionFunc;
 
-        &:hover, &:focus{
-            color: rgba(0, 0, 0, 0.5);
-            background-color: #067eb3;
+// Slick-Slider
+    .slick-slider{
+        padding: 0 30px
+    }
+    .slick-track{
+        position: relative;
+    }
+    .slick-arrow {
+        position: absolute;
+        top: 100%;
+        transform: translateY(-100%);
+        z-index: 10;
+        font-size: 0;
+        width: 32px;
+        height: calc(100% - 94px);
+        color: #fff;
+        background-color: #149edc;
+        &.slick-prev{
+            left: -1px;
+            background-image: url('../images/arrow-left.svg');
+            background-repeat: no-repeat;
+            background-position: center;
             background-size: 94px;
+            transition: all $transitionFunc;
+
+            &:hover, &:focus{
+                color: rgba(0, 0, 0, 0.5);
+                background-color: #067eb3;
+                background-size: 94px;
+                
+            }
+            &:before {
+                content: none;
+            }
+        }
+        &.slick-next{
+            right: -1px;
+            background-image: url('../images/arrow-right.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 94px;
+            transition: all $transitionFunc;
             
+            &:hover, &:focus{
+                color: rgba(0, 0, 0, 0.5);
+                background-color: #067eb3;
+                background-size: 94px;
+            }
+            &:before {
+                content: none;
+            }
         }
-        &:before {
-            content: none;
         }
-    }
-    &.slick-next{
-        right: -1px;
-        background-image: url('../images/arrow-right.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 94px;
-        transition: all $transitionFunc;
-        
-        &:hover, &:focus{
-            color: rgba(0, 0, 0, 0.5);
-            background-color: #067eb3;
-            background-size: 94px;
-        }
-        &:before {
-            content: none;
-        }
-    }
 }
-}
-// arrow w*h = 32*94 noactive bgc rgba(230,232,234,.3), color: rgba(58,60,62,.3); svg 16*16
+

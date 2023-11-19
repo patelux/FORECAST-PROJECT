@@ -1,81 +1,17 @@
-.current-forecast
- {
-    .wr-day-container
-    p {
-        text-align: center;
-        font-size: 26px;
-        font-weight: 500;
-        margin-bottom: 10px;
-        color:rgb(21, 50, 113);
-    }
-
-    .wr-location {
-        display: flex;
-        flex-wrap: nowrap;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 58px;
-        color: $secondaryTextColor;
-        padding: 24px 24px 0px;
-        margin-bottom: 16px;
-        @include mobile{
-            flex-direction: row;
-            justify-content: center;
-            padding: 8px 8px 0px;
-        }
-    }
-    .wr-location__name {
-        font-size: 26px;
-        color: $secondaryTextColor;
-        @include mobile{
-            font-size: 18px;
-        }
-        .location, .date{
-        font-size: 18px;
-        margin-left: 16px;
-        @include mobile{
-            font-size: 16px;
-        }
-        }
-
-    }
-    .btn-wrapper{
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    .btn-wrapper .wr-location__overview{
-        font-size: 16px;
-        text-transform: uppercase;
-        text-align: center;
-        color: $secondaryTextColor;
-        background-color: $accentColor;
-        border-radius: 8px;
-        padding: 8px 10px;
-        transition: all .5s ease;
-        &:hover, &:focus{
-            color: rgba($secondaryTextColor, 0.7);
-            background-color: $btnHoverColor;
-        }
-        
-    }
+.local-forecast .current-forecast{
     .wr-day-carousel__item {
         position: relative;
+        min-height: 188px;
+        width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
         gap: 20px;
-        background-color: #fff;
-        min-height: 188px;
-        // min-width: 406px;
-        width: 100%;
-        // padding: 30px 30px;
+        background-color: rgba(20, 156, 219, .8);
         margin: auto 0 auto 0;
+        padding: 20px 0;
         &:before{
             content: '';
             display: block;
@@ -85,7 +21,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: rgba($accentColorTempretureHigh, 0.6);
+            z-index: 2;
+            background-color: rgba($accentColorTempretureHigh, 0.5);
             transition: background-color 0.5s ease;
         }
         &:hover, &:focus{
@@ -101,11 +38,10 @@
             flex-direction: column;
             height: 100%;
             width: 100%;
-            padding: 10px;
             color: #141414;
+            padding: 10px;
             transition: width 5s ease;
         }
-
         .wr-day__title {
             display: flex;
             gap: 20px;
@@ -115,22 +51,14 @@
             margin-bottom: 20px;
         }
         .wr-date {
-            font-size: 26px;
-            font-weight: 600;
             margin: 0 0 auto 0;
-        }
-        .wr-sunrise{
-            display: flex;
-            flex-direction: row;
-        }
-        .wr-sunrise__description{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between ;
-            margin-left: 12px;
+            color: $secondaryTextColor;
+            span{
+                font-size: 48px;
+                font-weight: 900;
+            }
         }
     }
-
     .wr-date__long {
         display: none;
     }
@@ -144,12 +72,13 @@
             position: absolute;
             left: 0;
             right: 0;
-            bottom: 0;
-            height: 1px;
+            bottom: -5px;
+            height: 4px;
             width: 0;
-            background-color: #141414;
+            background-color: $secondaryTextColor;
             transition: width 0.3s ease;
         }
+        
     }
     .wr-day__body{
         height: 100%;
@@ -167,6 +96,10 @@
 
         height: 100%;
         margin-right: 0;
+        @include mobile{
+            flex-direction: column;
+            align-items: center;
+        }
     }
     .wr-day__details__weather-type-description {
         font-size: 18px;
@@ -174,95 +107,98 @@
         height: 100%;
         overflow: hidden;
         display: none;
-        // margin-left: 3.5rem;
         padding: 8px 0px;
     }
-    // .active .wr-day__details__weather-type-description {
-    //     font-size: 14px;
-    //     display: block;
-    // }
     .wr-day__weather-type {
-        display: block;
+        flex-basis: 30%;
     }
-    // .wr-weather-type--day {
-    // }
+    .wr-weather-type--day{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
     .wr-weather-type__text {
-        display: none;
+        color: $secondaryTextColor;
+        font-size: 26px;
+        line-height: 1.2;
+        font-weight: bold;
+        text-align: left;
+
     }
-    // --------------------
-    .wr-weather-type__icon {
-        display: inline-block;
-        width: 48px;
-        height: 48px;
-        background-color: transparent;
-        color: #141414;
-        img{
-            height: 100%;
+    .wr-weather-type__icon{
+        .img-wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            width: 120px;
+           #weather-icon{
             width: 100%;
+            height: 100%;
+           } 
         }
     }
     .wr-day__temperature {
+        flex-basis: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         margin-left: 0;
     }
-    .active .wr-day-temperature {
-    position: relative;
-    &::after{
-        content: '';
-        position: absolute;
-        display: block;
-        width: 1px;
-        height: 100%;
-        top: 0;
-        bottom: 0;
-        right: -20px;
-        background-color: #141414;
-    }
-    }
-
     .wr-day-temperature__high {
+        color: $secondaryTextColor;
         text-align: right;
         margin-bottom: 10px;
     }
     .wr-day-temperature__high-value {
-        font-size: 14px;
+        font-size: 26px;
         line-height: 1.2;
         font-weight: bold;
         text-align: right;
     }
-    .active .wr-day-temperature__high-value {
-        font-size: 18px;
-    }
-
     .wr-day-temperature__low {
+        color: $secondaryTextColor;
         text-align: center;
     }
     .wr-day-temperature__low-value {
-        font-size: 14px;
+        font-size: 26px;
         line-height: 1.2;
         font-weight: normal;
         text-align: right;
     }
-    .active .wr-day-temperature__low-value {
-        font-size: 18px;
-    }
-}
-    // .wr-day__wind-speed {
-    // }
-    // .wr-wind-speed {
-    // }
-    // .wr-hide-visually {
-    // }
-    // .wr-wind-speed__description {
-    // }
-    // .wr-wind-speed__value {
-    // }
-    // .wr-wind-speed__icon {
-    // }
-    // .wr-day__weather-type-description-container {
-    // }
-    // .wr-day__weather-type-description {
-    // }
-    // .wr-day__temperature-bar {
-    // }
 
+    .wr-wind-speed {
+        flex-basis: 30%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+    .wr-wind-type__icon{
+        width: 80px;
+        height: 80px;
+        color: $secondaryTextColor;
+        background-color: transparent;
+        .icon-weather{
+            fill: currentColor;
+        width: 100%;
+        height: 100%;
+        }
+    }
+    
+    .wr-wind-speed__description {
+        color: $secondaryTextColor;
+    }
+    .wr-wind-speed__value {
+        font-size: 26px;
+        line-height: 1.2;
+        font-weight: bold;
+        text-align: right;
+    }
+
+}
 

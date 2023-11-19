@@ -7,7 +7,7 @@ import {
     InputAdornment
 } from "@mui/material";
 import { useRef, useState } from 'react';
-import { useSyncExternalStore } from 'react';
+// import { useSyncExternalStore } from 'react';
 import { weatherStore } from '../../store/weather.js';
 import { weatherDailyStore } from '../../store/weatherDaily.js';
 import SearchIcon from '@mui/icons-material/Search';
@@ -25,9 +25,7 @@ export default function SearchForm () {
 
     
     // 123456789
-    const weatherStoreCurrent = useSyncExternalStore(weatherStore.subscribe, weatherStore.getSnapshot);
-
-    console.log(weatherStoreCurrent);
+    // const weatherStoreCurrent = useSyncExternalStore(weatherStore.subscribe, weatherStore.getSnapshot);
     
     const handleChange = (e) => {
         const inputValue = e.target.value;
@@ -77,7 +75,6 @@ export default function SearchForm () {
     const getDailyResults = async (lat, lon) => {
       try {
         const response = await axios.get(`${API_URL_DAILY}?appid=${MY_API_KEY_DAILY}&lat=${lat}&lon=${lon}`);
-  
         if (response.status === 200) {
           weatherDailyStore.addDailyWeather(response.data.list);
         } 

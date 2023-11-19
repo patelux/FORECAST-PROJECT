@@ -3,9 +3,9 @@ import { weatherStore  } from '../../store/weather.js';
 
 import { useState, useEffect } from 'react';
 import React from "react";
-import { Container } from "@mui/material";
-import sunriseIcon from '../../images/sunrise.svg';
-import windIcon from '../../images/wind.svg';
+
+// import sunriseIcon from '../../images/sunrise.svg';
+// import windIcon from '../../images/wind.svg';
 
 
 
@@ -25,7 +25,7 @@ export default function CurrentWeatherItem(props){
         sunrise: null,
         sunset: null,
         keyId: null,
-        dt: null,
+        dtValue: null,
         lon: null,
         lat: null,
         timezone: null
@@ -52,7 +52,7 @@ export default function CurrentWeatherItem(props){
           });
         };
       }, [weatherStoreCurrent]);
-
+console.log(weatherData);
 
 // class Name of Container
     useEffect(() => {
@@ -81,6 +81,14 @@ export default function CurrentWeatherItem(props){
 
         props.setTimeOfDayLocal(timeOfDay);
         props.setContainerClassNameLocal(containerClassName);
+        props.setCurrentLocationLocal({
+          currentCity: weatherData.currentCity,
+          country: weatherData.country,
+          timezone: weatherData.timezone,
+          sunrise: weatherData.sunrise,
+          sunset: weatherData.sunset,
+          dtValue: weatherData.dtValue
+        })
       }, [weatherData, props]);
 
 // кельвін → цельсій
@@ -89,32 +97,32 @@ function temperatureInCelcius(temp) {
 }
 // расчет даты
 
-const getOrdinalSuffix = (day) => {
-    if (day >= 11 && day <= 13) {
-      return `${day}th`;
-    }
-    switch (day % 10) {
-      case 1:
-        return `${day}st`;
-      case 2:
-        return `${day}nd`;
-      case 3:
-        return `${day}rd`;
-      default:
-        return `${day}th`;
-    }
-  };
+// const getOrdinalSuffix = (day) => {
+//     if (day >= 11 && day <= 13) {
+//       return `${day}th`;
+//     }
+//     switch (day % 10) {
+//       case 1:
+//         return `${day}st`;
+//       case 2:
+//         return `${day}nd`;
+//       case 3:
+//         return `${day}rd`;
+//       default:
+//         return `${day}th`;
+//     }
+//   };
 // copy в weatherList
-const currentTimestamp = Date.now();
-const timezoneOffset = weatherData.timezone || 0;
-const formattedDate = new Date((currentTimestamp + timezoneOffset*1000));
-const currentDate =   getOrdinalSuffix(formattedDate.getUTCDate());
-const currentDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(formattedDate);
+// const currentTimestamp = Date.now();
+// const timezoneOffset = weatherData.timezone || 0;
+// const formattedDate = new Date((currentTimestamp + timezoneOffset*1000));
+// const currentDate =   getOrdinalSuffix(formattedDate.getUTCDate());
+// const currentDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(formattedDate);
 // const currentDayShort = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(formattedDate);
 // const currentMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(formattedDate);
-const currentHours = formattedDate.getUTCHours();
-const currentMinutes = formattedDate.getUTCMinutes();
-const formattedCurrentTime = `${currentHours < 10 ? '0' : ''}${currentHours}:${currentMinutes < 10 ? '0' : ''}${currentMinutes}`;
+// const currentHours = formattedDate.getUTCHours();
+// const currentMinutes = formattedDate.getUTCMinutes();
+// const formattedCurrentTime = `${currentHours < 10 ? '0' : ''}${currentHours}:${currentMinutes < 10 ? '0' : ''}${currentMinutes}`;
 
 // парсинг данных
 const temperature_max = temperatureInCelcius(weatherData.temp_max);
@@ -122,50 +130,17 @@ const temperature_min = temperatureInCelcius(weatherData.temp_min);
 // const feelsLike = temperatureInCelcius(feels_like);
 const iconUrl = `https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`;
 
-// get 5-day forecast ↓
-const onClickHandler = (e) => {
-    e.preventDefault();
-    console.log('click click 5-day forecast');
-    }
 
     return (  
-            <Container className="current-forecast">
-            <div className="wr-location">
-              <h1 id="wr-location-name-id" className="wr-location__name">
-                {weatherData.currentCity}, {weatherData.country}
-                <span className='date'>{`  ${currentDay}  ${currentDate}  ${formattedCurrentTime}`}</span> 
-              </h1>
-              <div className="btn-wrapper">
-                <a href="/" className="wr-location__overview" onClick={onClickHandler}>
-                  5-days forecast  
-                </a>
-                <a href="/" className="wr-location__overview" onClick={onClickHandler}>
-                  hourly forecast  
-                </a> 
-              </div>
-            </div>
+
         
             <div className="wr-day-carousel__item">
-                <div
-                    className="wr-day__content">
+                <div className="wr-day__content">
                     <div className="wr-day__title">
                         <div className="wr-date">
                             <span className="wr-date__longish">
-                                Today&nbsp;
+                                Today
                             </span>
-                        </div>
-                        <div className="wr-sunrise">
-                                        <div className="wr-weather-type__icon">
-                                        <img src={sunriseIcon} alt="wind" className="icon-weather"/>
-                                        </div> 
-                                        <div className="wr-sunrise__description">
-                                            <div className="wr-sunrise__value ">
-                                            Sunrise 06:50
-                                            </div>
-                                            <div className="wr-sunset__value ">
-                                            Sunset 15:49
-                                            </div>
-                                        </div>
                         </div>
                     </div>
                     <div className="wr-day__body">
@@ -197,25 +172,24 @@ const onClickHandler = (e) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="wr-day__details__weather-type-description">
-                                {weatherData.description}
-                                </div>
-                                    <div className="wr-wind-speed">
-                                        <span className="wr-weather-type__icon">
-                                        <img src={windIcon} alt="wind" className="icon-weather"/>
-                                        </span> 
+                                <div className="wr-wind-speed">
+                                    <div className="wr-wind-type__icon">
+                                      <svg className="icon-weather" version="1.1" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 32 32" alt="wind" >
+                                      <title>wind</title>
+                                        <path d="M26.938 12c-1.656 0-3 1.344-3 3 0 0.353 0.073 0.685 0.184 1h-19.184c-0.552 0-1 0.448-1 1s0.448 1 1 1h22c1.656 0 3-1.344 3-3s-1.344-3-3-3zM4.938 14h12c1.656 0 3-1.344 3-3s-1.344-3-3-3-3 1.344-3 3c0 0.353 0.073 0.685 0.184 1h-9.184c-0.552 0-1 0.448-1 1s0.448 1 1 1zM20.938 20c-0.059 0-0.115 0.013-0.174 0.018-0.039-0.003-0.072-0.018-0.111-0.018h-15.428c-0.711 0-1.287 0.448-1.287 1s0.576 1 1.287 1h12.897c-0.111 0.315-0.184 0.648-0.184 1 0 1.656 1.344 3 3 3s3-1.344 3-3-1.344-3-3-3z"></path>
+                                      </svg>
+                                    </div>
                                         <span className="wr-wind-speed__description">
                                             <span className="wr-wind-speed__value ">
                                                 11 mph
                                             </span>
                                         </span>
-                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-            </Container>
+
     )
 }
