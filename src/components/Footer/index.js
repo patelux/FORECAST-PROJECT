@@ -16,7 +16,7 @@ export default function Footer (){
     
           <div className="copyright-box">
             <p className="footer-copyright">© 2023 Beetroot. All Rights Reserved.</p>
-            <ModalFooter />          
+            {/* <ModalFooter />           */}
             
           </div>
           
