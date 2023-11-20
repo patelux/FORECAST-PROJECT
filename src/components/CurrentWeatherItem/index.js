@@ -15,7 +15,7 @@ export default function CurrentWeatherItem(props){
     const [weatherData, setWeatherData] = useState({
         currentCity: '',
         country: '',
-        icon: '04n',
+        icon: '',
         main: '',
         description: '',
         temp_max: null,
@@ -40,7 +40,7 @@ export default function CurrentWeatherItem(props){
           setWeatherData({
             currentCity: weatherStoreCurrent.name || '',
             country: weatherStoreCurrent.sys?.country || '',
-            icon: weatherStoreCurrent.weather[0]?.icon || '04n',
+            icon: weatherStoreCurrent.weather[0]?.icon || '',
             main: weatherStoreCurrent.weather[0]?.main || '',
             description: weatherStoreCurrent.weather[0]?.description || '',
             temp_max: weatherStoreCurrent.main?.temp_max || null,
