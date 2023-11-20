@@ -119,6 +119,10 @@
         .wr-pressure {
             display: flex;
         }
+        .wr-humidity__icon, .wr-pressure__icon {
+            text-align: right;
+            padding-right: 40px;
+        }
 }
 
     .wr-date__long {

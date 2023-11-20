@@ -72,7 +72,7 @@ export default function ModalFooter () {
           />
           <div className="team-title title">this app developed with Beetroot support by</div>
             <div className="team-item">
-              <img src={photo} alt="" class="person-image" />
+              <img src={photo} alt="" className="person-image" />
               <div className="team-unit">
                 <h3 className="person-name">Levenets Natalia</h3>
                 <p className="person-position">FrontEnd Developer</p>

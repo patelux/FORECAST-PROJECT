@@ -109,7 +109,7 @@
         align-items: center;
         height: 100%;
         margin-right: 0;
-        @include mobile{
+        @include smallmobile{
             flex-direction: column;
             gap: 12px;
             align-items: center;
@@ -125,7 +125,7 @@
     }
     .wr-day__weather-type {
         flex-basis: 30%;
-        @include mobile {
+        @include smallmobile {
             flex-basis: 100%;
         }
     }
@@ -171,7 +171,7 @@
         align-items: center;
         justify-content: center;
         margin-left: 0;
-        @include mobile {
+        @include smallmobile {
             width: 100%;
             flex-direction: row;
             text-align: center;
@@ -197,7 +197,7 @@
     }
     .wr-day-temperature__low {
         color: $secondaryTextColor;
-        @include mobile {
+        @include smallmobile {
             width: 50%;
             margin-bottom: 0px;
         }
@@ -220,7 +220,7 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
-        @include mobile {
+        @include smallmobile {
             width: 100%;
             flex-direction: row;
             text-align: center;
@@ -230,7 +230,7 @@
         width: 50%;
         color: $secondaryTextColor;
         background-color: transparent;
-        @include mobile {
+        @include smallmobile {
             width: 50%;
         }
     .icon-weather{
@@ -265,10 +265,13 @@
         align-items: center;
         justify-content: flex-start;
         gap: 10px;
-        @include mobile {
+        @include smallmobile {
             width: 100%;
             flex-direction: row;
             text-align: center;
+        }
+        @include smallmobile{
+            display: none;
         }
     }
     .wr-visibility__icon{
@@ -305,10 +308,13 @@
         align-items: center;
         justify-content: flex-start;
         gap: 10px;
-        @include mobile {
+        @include smallmobile {
             width: 100%;
             flex-direction: row;
             text-align: center;
+        }
+        @include smallmobile{
+            display: none;
         }
     }
     .wr-humidity__icon{
@@ -345,10 +351,13 @@
         align-items: center;
         justify-content: flex-start;
         gap: 10px;
-        @include mobile {
+        @include smallmobile {
             width: 100%;
             flex-direction: row;
             text-align: center;
+        }
+        @include smallmobile{
+            display: none;
         }
     }
     .wr-pressure__icon{
