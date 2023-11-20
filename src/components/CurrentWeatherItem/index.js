@@ -15,7 +15,7 @@ export default function CurrentWeatherItem(props){
     const [weatherData, setWeatherData] = useState({
         currentCity: '',
         country: '',
-        // icon: '',
+        icon: '',
         main: '',
         description: '',
         temp_max: null,
@@ -40,7 +40,7 @@ export default function CurrentWeatherItem(props){
           setWeatherData({
             currentCity: weatherStoreCurrent.name || '',
             country: weatherStoreCurrent.sys?.country || '',
-            // icon: weatherStoreCurrent.weather[0].icon || '',
+            icon: weatherStoreCurrent.weather[0].icon || '',
             main: weatherStoreCurrent.weather[0].main || '',
             description: weatherStoreCurrent.weather[0]?.description || '',
             temp_max: weatherStoreCurrent.main.temp_max || null,
@@ -79,7 +79,6 @@ export default function CurrentWeatherItem(props){
         const dateTimeMillis = (weatherData.dtValue + weatherData.timezone) * 1000;
         const date = new Date(dateTimeMillis);
         const hours = date.getHours();
-        // const minutes = date.getMinutes();
         let timeOfDay;
         if (hours >= 6 && hours < 18) {
           timeOfDay = 'day';
@@ -150,7 +149,7 @@ const pressure = weatherData.pressure;
                                         </div>
                                         <div className="wr-weather-type__icon">
                                             <div className="img-wrapper">
-                                                <img id="weather-icon" src=" " alt="Weather Icon"/>
+                                                <img id="weather-icon" src={iconUrl} alt="Weather Icon"/>
                                             </div>
                                         </div>
                                     </div>
