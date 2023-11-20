@@ -15,7 +15,7 @@ export default function CurrentWeatherItem(props){
     const [weatherData, setWeatherData] = useState({
         currentCity: '',
         country: '',
-        icon: '',
+        // icon: '',
         main: '',
         description: '',
         temp_max: null,
@@ -40,7 +40,7 @@ export default function CurrentWeatherItem(props){
           setWeatherData({
             currentCity: weatherStoreCurrent.name || '',
             country: weatherStoreCurrent.sys?.country || '',
-            icon: weatherStoreCurrent.weather[0].icon || '',
+            // icon: weatherStoreCurrent.weather[0].icon || '',
             main: weatherStoreCurrent.weather[0].main || '',
             description: weatherStoreCurrent.weather[0]?.description || '',
             temp_max: weatherStoreCurrent.main.temp_max || null,
@@ -103,39 +103,10 @@ export default function CurrentWeatherItem(props){
 function temperatureInCelcius(temp) {
     return Math.round(temp - 273.15);
 }
-// расчет даты
-
-// const getOrdinalSuffix = (day) => {
-//     if (day >= 11 && day <= 13) {
-//       return `${day}th`;
-//     }
-//     switch (day % 10) {
-//       case 1:
-//         return `${day}st`;
-//       case 2:
-//         return `${day}nd`;
-//       case 3:
-//         return `${day}rd`;
-//       default:
-//         return `${day}th`;
-//     }
-//   };
-// copy в weatherList
-// const currentTimestamp = Date.now();
-// const timezoneOffset = weatherData.timezone || 0;
-// const formattedDate = new Date((currentTimestamp + timezoneOffset*1000));
-// const currentDate =   getOrdinalSuffix(formattedDate.getUTCDate());
-// const currentDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(formattedDate);
-// const currentDayShort = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(formattedDate);
-// const currentMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(formattedDate);
-// const currentHours = formattedDate.getUTCHours();
-// const currentMinutes = formattedDate.getUTCMinutes();
-// const formattedCurrentTime = `${currentHours < 10 ? '0' : ''}${currentHours}:${currentMinutes < 10 ? '0' : ''}${currentMinutes}`;
 
 // парсинг данных
 const temperature_max = temperatureInCelcius(weatherData.temp_max);
 const temperature_min = temperatureInCelcius(weatherData.temp_min);
-// const feelsLike = temperatureInCelcius(feels_like);
 const iconUrl = `https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`;
 const visibilityInMeters = weatherData.visibility;
 
@@ -179,7 +150,7 @@ const pressure = weatherData.pressure;
                                         </div>
                                         <div className="wr-weather-type__icon">
                                             <div className="img-wrapper">
-                                                <img id="weather-icon" src={iconUrl} alt="Weather Icon"/>
+                                                <img id="weather-icon" src=" " alt="Weather Icon"/>
                                             </div>
                                         </div>
                                     </div>
