@@ -1,7 +1,8 @@
 .daily-forecast {
-// .wr-location {
-//     align-items: baseline;
-// }
+    margin-bottom: 120px;
+    @include mobile {
+        margin-bottom: 10px;
+    }
 .wr-day-carousel__item {
     position: relative;
     min-height: 102px;
@@ -55,7 +56,7 @@
         padding-bottom: 0px;
         padding-top: 8px;
         margin-top: 0px;
-        bottom: -19px;
+        bottom: -29px;
         z-index: 777;
         &:before{
             content: '';
@@ -91,7 +92,7 @@
             margin-left: 20px;
             text-align: right;
         }
-        .active .wr-day-temperature {
+        .wr-day-temperature {
             position: relative;
             &::after{
                 content: '';
@@ -105,32 +106,50 @@
                 background-color: #141414;
             }
 
-}}
-
-.wr-date__long {
-    display: none;
+        }
+        .wr-day-temperature__high-value {
+            font-size: 18px;
+            }
+        .wr-day-temperature__low-value {
+            font-size: 18px;
+        }
+        .wr-humidity {
+            display: flex;
+        }
+        .wr-pressure {
+            display: flex;
+        }
 }
 
-.wr-date__longish {
-    position: relative;
-    display: inline-block;
-    &::after{
-        content: "";
-        display: inline-block;
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 1px;
-        width: 0;
-        background-color: #141414;
-        transition: width 0.3s ease;
+    .wr-date__long {
+        display: none;
     }
-}
+
+    .wr-date__longish {
+        position: relative;
+        display: inline-block;
+        &::after{
+            content: "";
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            width: 0;
+            background-color: #141414;
+            transition: width 0.3s ease;
+        }
+    }
     .wr-day__body{
         height: 100%;
     }
     .wr-day__details-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
         width: 100%;
         height: 100%;
         margin-right: 0;
@@ -140,8 +159,8 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-
         height: 100%;
+        width: 100%;
         margin-right: 0;
     }
     .wr-day__details__weather-type-description {
@@ -155,12 +174,9 @@
     .wr-day__weather-type {
         display: block;
     }
-    // .wr-weather-type--day {
-    // }
     .wr-weather-type__text {
         display: none;
     }
-// --------------------
     .wr-weather-type__icon {
         display: inline-block;
         width: 48px;
@@ -187,9 +203,7 @@
     font-weight: bold;
     text-align: right;
 }
-.active .wr-day-temperature__high-value {
-    font-size: 18px;
-}
+
 
 .wr-day-temperature__low {
     text-align: center;
@@ -200,21 +214,67 @@
     font-weight: normal;
     text-align: right;
 }
-.active .wr-day-temperature__low-value {
-    font-size: 18px;
+
+
+.wr-humidity {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+.wr-humidity__icon{
+    width: 50%;
+    color: rgba( #141414, .9);
+    background-color: transparent;
+    .icon-weather{
+        fill: currentColor;
+        width: 26px;
+        height: 26px;
+    }
 }
-// .wr-day__wind-speed {
-// }
-// .wr-wind-speed {
-// }
-// .wr-hide-visually {
-// }
-// .wr-wind-speed__description {
-// }
-// .wr-wind-speed__value {
-// }
-// .wr-wind-speed__icon {
-// }
+.wr-humidity__description {
+    width: 50%;
+    color: #141414;
+    text-align: left;
+}
+.wr-humidity__value {
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 500;
+}
+.wr-pressure {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+}
+.wr-pressure__icon{
+    width: 50%;
+    color: rgba( #141414, .9);
+    background-color: transparent;
+    .icon-weather{
+        fill: currentColor;
+        width: 26px;
+        height: 26px;
+    }
+}
+.wr-pressure__description {
+    width: 50%;
+    color: #141414;
+    text-align: left;
+}
+.wr-pressure__value {
+    line-height: 1.2;
+    font-weight: 500;
+    font-size: 16px;
+}
 
 
 // Slick-Slider

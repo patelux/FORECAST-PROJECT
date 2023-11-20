@@ -6,7 +6,8 @@
 @import './components/container';
 @import './DailyWeatherItem.scss';
 @import './CurrentWeatherItem.scss';
-
+@import './HourlyWeatherItem.scss';
+@import './Footer.scss';
 
 .page_wrapper{
     margin: 0px auto;
@@ -517,7 +518,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .wr-day-container.current-forecast, .wr-day-container.daily-forecast{
     display: flex;
@@ -606,6 +607,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
     margin: 0 0 0 auto;
     @include mobile{
         justify-content: space-between;
+        margin: 0 auto;
     }
 }
 .btn-wrapper .wr-location__overview{
@@ -613,15 +615,29 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
     font-size: 16px;
     text-transform: uppercase;
     text-align: center;
-    color: $secondaryTextColor;
-    background-color: $accentColor;
     border-radius: 8px;
     padding: 8px 10px;
+    color: $secondaryTextColor;
+    background-color: $accentColor;
     transition: all .5s ease;
     &:hover, &:focus{
         color: rgba($secondaryTextColor, 0.7);
         background-color: $btnHoverColor;
-    }  
+    }
+    &.active{
+        color: $secondaryTextColor;
+        background-color: $accentColor;
+        &:hover, &:focus{
+            color: rgba($secondaryTextColor, 0.7);
+            background-color: $btnHoverColor;
+        }}
+    &.current{
+        color: rgba($secondaryTextColor, .7);
+        background-color: rgba(0,0,0, 0.2);
+        &:hover, &:focus{
+            color: rgba($secondaryTextColor, .7);
+            background-color: rgba(0,0,0, 0.2)
+        }}
 }
 .d-none{
     display: none;
@@ -636,149 +652,19 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
     background-color: $secondaryBgColor;
     padding-top: 30px;
     padding-bottom: 30px;
-    & .nav-list_wrapper{
-        @include mobile{
-            display: flex;
-        }
-    }  
-    & .nav_item {
-        color: $primaryBgColor;
-        background-color: transparent;
-        transition: all .2s ease;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .nav_list{
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0;
-    }
-    .nav_link {
-        display: block;
-        @include menuText;
-        padding: 0;
-            &:focus, &:hover {
-            color: $accentColor;
-            background-color: transparent;
-        }
-    }   
-    & .logo-wrapper {
-        width: 112px;
-        height: 50px;
-    }
-}
 
-.footer_wrapper {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    justify-content: space-between;
-    margin-bottom: 54px;
-    @include tablet{
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: 1fr;
-    }
-    @include mobile{
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(19, 1fr);
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
-        justify-items: center;
-    }
-    & .logo-wrapper{
-        grid-area: 1 / 1 / 2 / 3;
-        @include tablet{
-            grid-area: 1 / 1 / 2 / 3;
-        }
-        @include mobile{
-            grid-area: 1 / 2 / 5 / 4;;
-        }
-    }
-    & .nav-list_wrapper{
-        grid-area: 3 / 1 / 5 / 3;
-        @include tablet{
-            grid-area: 1 / 4 / 2 / 5;
-        }
-        @include mobile{
-            grid-area: 8 / 1 / 19 / 2;
-            align-items: flex-start;
-        }
-    }
-    & .contacts-wrapper{
-        grid-area: 1 / 9 / 5 / 13;
-        @include tablet{
-            grid-area: 1 / 6 / 2 / 9;
-        }
-        @include mobile{
-            grid-area: 8 / 3 / 20 / 5;
-            align-items: flex-end;
-        }
-    }
-}
-
-.contacts-wrapper{
-    grid-area: 1 / 9 / 5 / 13;
-    display: flex;
-    flex-direction: column;
-}
-.contact-title {
-    @include contacts;
-    margin-bottom: 48px;
-    @include tablet{
-        margin-bottom: 25px;
-    }
-
-}
-.contact_tel {
-    @include contacts;
-    transition: all $transitionFunc;
-    &:hover,
-    &:focus {
-        color: $accentColor;  
-    } 
-}
-   
-.footer .social-link-list {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 35px;
-    @include tablet{
-        gap: 20px;
-        margin-bottom: 20px;
-    }
-    @include mobile{
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-}
-.footer .social-link {
-    width: 30px;
-    height: 30px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-start;
-    border: none;
-    background-color: transparent;
-    transition: all $transitionFunc;
-    &:hover,
-    &:focus {
-        transform: scale(1.1);
-        color: $accentColor;  
-    }     
-
-    @include tablet{
-        width: 20px;
-        height: 20px;
-    }
-  }
   
 .copyright-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
     text-align: center;
 }
 .footer-copyright {
     display: inline-block;
     color: $secondaryTextColor;
     @include copyright; 
+}
 }

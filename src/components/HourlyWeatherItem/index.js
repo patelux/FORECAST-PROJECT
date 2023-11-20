@@ -5,11 +5,8 @@ import { weatherDailyStore } from '../../store/weatherDaily.js';
 import { useState, useEffect } from 'react';
 import React from "react";
 import Slider from "react-slick";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTint, faSmog, faCloudShowersHeavy } from '@fortawesome/free-solid-svg-icons';
-import { faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
 
-export default function DailyWeatherItem(){
+export default function HourlyWeatherItem(){
     const weatherStoreDaily = useSyncExternalStore(weatherDailyStore.subscribe, weatherDailyStore.getSnapshot);
     const weatherStoreCurrent = useSyncExternalStore(weatherStore.subscribe, weatherStore.getSnapshot);
     const [weatherData, setWeatherData] = useState({
@@ -22,7 +19,6 @@ export default function DailyWeatherItem(){
         lon: null
       });
 
-    const [isClicked, setIsClicked] = useState(false);
 
       useEffect(() => {
         if (weatherStoreCurrent) {
@@ -58,18 +54,6 @@ const getOrdinalSuffix = (day) => {
     }
 };
 
-
-const onClickLinkHandler = (e) => {
-    e.preventDefault();
-    if (!isClicked) {
-        setIsClicked(true);
-        e.currentTarget.parentElement.classList.add('active');
-      } 
-    if (isClicked) {
-        setIsClicked(false);
-        e.currentTarget.parentElement.classList.remove('active');
-      }       
-};
 const settings = {
       dots: false,
       infinite: true,
@@ -107,37 +91,24 @@ const settings = {
         }
       ]
   };
-const everyFourthItem = weatherStoreDaily.filter((item, index) => index % 8 === 0);
-const forecastList = everyFourthItem.map((item, index) => {
-  // console.log(item);
+// const everyFourthItem = weatherStoreDaily.filter((item, index) => index % 8 === 0);
+// const everyFourthItem = weatherStoreDaily.filter((item, index) => index % 8 === 0);
+const forecastList = weatherStoreDaily.map((item, index) => {
     const temperature_max = temperatureInCelcius(item.main?.temp_max);
     const temperature_min = temperatureInCelcius(item.main?.temp_min);
     const iconUrl = `https://openweathermap.org/img/wn/${item.weather[0]?.icon}@2x.png`;
     const dateTimeMillis = (item.dt + weatherData.timezone) * 1000;
+    // const dateTimeMillis = (item.dt + item.timezone) * 1000;
     const formattedDate = new Date(dateTimeMillis);
     const currentDate =   getOrdinalSuffix(formattedDate.getUTCDate());
     const currentDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(formattedDate);
-    const currentDayShort = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(formattedDate);
+    // const currentDayShort = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(formattedDate);
     const currentMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(formattedDate);
-// humidity + pressure
-    const humidity = item.main?.humidity;
-      let humidityIcon;
-      if (humidity < 30) {
-        humidityIcon = faTint;
-      } else if (humidity < 60) {
-        humidityIcon = faSmog;
-      } else {
-        humidityIcon = faCloudShowersHeavy;
-      }
-
-    const pressure = item.main?.pressure;
-    const pressureIcon = faTachometerAlt;
-
 
     return(
     <div className="wr-day-carousel__item" key={index} >
-        <a href='/'
-            className="wr-day__content" onClick={onClickLinkHandler}>
+        <div
+            className="wr-day__content">
             <div className="wr-day__title"
                 aria-label="">
                 <div className="wr-date">
@@ -153,12 +124,7 @@ const forecastList = everyFourthItem.map((item, index) => {
                         </span>
                     </span>
                     <span className="wr-date__longish">
-                        {currentDayShort}&nbsp;
-                        <span className="wr-date__light">
-                            <span className="wr-date__longish__dotm">
-                                {currentDate}
-                            </span>
-                        </span>
+                        {item.dt_txt}
                     </span>
                 </div>
             </div>
@@ -194,34 +160,10 @@ const forecastList = everyFourthItem.map((item, index) => {
                         <div className="wr-day__details__weather-type-description">
                         {item.weather[0]?.description}
                         </div>
-                    </div> 
-                    <div className="wr-day__details">
-                        <div className="wr-humidity">
-                                    <div className="wr-humidity__icon">
-                                    <FontAwesomeIcon className="icon-weather" icon={humidityIcon} />
-                                    </div>
-                                        <div className="wr-humidity__description">
-                                            <span className="wr-humidity__value ">
-                                            {humidity} %
-                                            </span>
-                                        </div>
-                        </div>
-                        </div>
-                        <div className="wr-day__details">
-                        <div className="wr-pressure">
-                            <div className="wr-pressure__icon">
-                            <FontAwesomeIcon className="icon-weather" icon={pressureIcon} />
-                            </div>
-                                <div className="wr-pressure__description">
-                                    <span className="wr-pressure__value ">
-                                    {pressure} hPa
-                                    </span>
-                                </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </a>        
+        </div>        
     </div>
     )
 })

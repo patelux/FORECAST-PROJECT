@@ -6,16 +6,18 @@ import { weatherDailyStore  } from '../../store/weatherDaily.js';
 import { Container } from "@mui/material";
 import DailyWeatherItem from "../DailyWeatherItem";
 import CurrentWeatherItem from "../CurrentWeatherItem/index.js";
+import HourlyWeatherItem from "../HourlyWeatherItem/index.js";
 
 
 
 export default function DailyWeatherList(){
     const divCurrent = document.getElementById('current');
     const divDaily = document.getElementById('daily');
+    const divHourly = document.getElementById('hourly');
     const btnCurrent = document.getElementById('btn-current');
     const btnDaily = document.getElementById('btn-daily');
     const btnHourly = document.getElementById('btn-hourly');
-
+    
     const weatherStoreCurrent = useSyncExternalStore(weatherStore.subscribe, weatherStore.getSnapshot);
     const weatherStoreDaily = useSyncExternalStore(weatherDailyStore.subscribe, weatherDailyStore.getSnapshot);
 
@@ -82,22 +84,55 @@ const formatTime = (timestamp) => {
         setCurrentLocation(currentLocation);
       }, [currentLocation]);
 
+// reset btn classes for click
+const reset = () => {
+        divCurrent && divCurrent.classList.remove('d-none');
+        divDaily && divDaily.classList.remove('d-none');
+        divHourly && divHourly.classList.remove('d-none');
+        btnCurrent && btnCurrent.classList.remove('active');
+        btnDaily && btnDaily.classList.remove('active');
+        btnHourly && btnHourly.classList.remove('active');
+        btnCurrent && btnCurrent.classList.remove('current');
+        btnDaily && btnDaily.classList.remove('current');
+        btnHourly && btnHourly.classList.remove('current');
+}
+
 //   click on the button
     const onClickCurrentHandler = (e) => {
         e.preventDefault();
-        divCurrent && divCurrent.classList.toggle('d-none');
-        divDaily && divDaily.classList.toggle('d-none');
-        btnCurrent && btnCurrent.classList.toggle('d-none');
-        btnDaily && btnDaily.classList.toggle('d-none');
+        reset();
+
+        divDaily && divDaily.classList.add('d-none');
+        divHourly && divHourly.classList.add('d-none');
+
+        btnCurrent && btnCurrent.classList.add('current');
+        btnDaily && btnDaily.classList.add('active');
+        btnHourly && btnHourly.classList.add('active');
     };
 
     const onClickDailyHandler = (e) => {
         e.preventDefault();
-        divCurrent && divCurrent.classList.toggle('d-none');
-        divDaily && divDaily.classList.toggle('d-none');
-        btnCurrent && btnCurrent.classList.toggle('d-none');
-        btnDaily && btnDaily.classList.toggle('d-none');
+        reset();
+        divCurrent && divCurrent.classList.add('d-none');
+        divHourly && divHourly.classList.add('d-none');
+
+        btnCurrent && btnCurrent.classList.add('active');
+        btnDaily && btnDaily.classList.add('current');
+        btnHourly && btnHourly.classList.add('active');
     }
+
+    const onClickHourlyHandler = (e) => {
+        e.preventDefault();
+        reset();
+        divCurrent && divCurrent.classList.add('d-none');
+        divDaily && divDaily.classList.add('d-none');
+
+        btnCurrent && btnCurrent.classList.add('active');
+        btnDaily && btnDaily.classList.add('active');
+        btnHourly && btnHourly.classList.add('current');
+  }
+
+
 
 
     return(
@@ -121,25 +156,25 @@ const formatTime = (timestamp) => {
                         </div>
                             <div className="wr-sunrise__description">
                                 <div className="wr-sunrise__value ">
-                                Sunrise: {formatTime(currentLocation.sunrise)}
+                                Sunrise: {currentLocation.sunrise ? formatTime(currentLocation.sunrise) : " "}
                                 </div>
                                 <div className="wr-sunset__value ">
-                                Sunset: {formatTime(currentLocation.sunset)}
+                                Sunset: {currentLocation.sunset ? formatTime(currentLocation.sunset) : " "}
                                 </div>
                             </div>
                         </div>
                     </div>
                     { Object.keys(weatherStoreCurrent).length > 0 ? 
                     <div className="btn-wrapper">
-                            <a href="/" className="wr-location__overview d-none" id="btn-current" onClick={onClickCurrentHandler}>
+                            <button type='button' className="wr-location__overview current" id="btn-current" onClick={onClickCurrentHandler}>
                                 current  
-                            </a> 
-                            <a href="/" className="wr-location__overview" id="btn-daily" onClick={onClickDailyHandler}>
+                            </button> 
+                            <button type='button' className="wr-location__overview active" id="btn-daily" onClick={onClickDailyHandler}>
                             5-days  
-                            </a>
-                            <a href="/" className="wr-location__overview d-none" id="btn-hourly">
+                            </button>
+                            <button type='button' className="wr-location__overview active" id="btn-hourly" onClick={onClickHourlyHandler}>
                             hourly  
-                            </a> 
+                            </button> 
                     </div>
                     : 
                     <p></p>} 
@@ -152,6 +187,8 @@ const formatTime = (timestamp) => {
              
 
             { (weatherStoreDaily).length > 0 ? <div className="daily-forecast d-none" id="daily"><DailyWeatherItem /></div> : <p></p> }
+
+            { (weatherStoreDaily).length > 0 ? <div className="daily-forecast d-none" id="hourly"><HourlyWeatherItem /></div> : <p></p> }
 
             </Container>
           </div>

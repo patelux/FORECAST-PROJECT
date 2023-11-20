@@ -22,7 +22,8 @@ export default function SearchForm () {
     const inputRef = useRef(null);
     const [searchVal, setSearchVal] = useState('');
     const [inputValError, setInputValError] = useState('');
-
+    const [currentLon, setCurrentLon] = useState(null);
+    const [currentLat, setCurrentLat] = useState(null);
     
     // 123456789
     // const weatherStoreCurrent = useSyncExternalStore(weatherStore.subscribe, weatherStore.getSnapshot);
@@ -59,10 +60,12 @@ export default function SearchForm () {
           const response = await axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`);
           if (response.status === 200) {
             weatherStore.addCurrentWeather(response.data);
+            // setCurrentLon(response.data.coord.lon);
+            // setCurrentLat(response.data.coord.lat);
             getDailyResults(response.data.coord.lon, response.data.coord.lat) 
           } 
           weatherStore.addCurrentWeather({});
-          weatherDailyStore.addDailyWeather([]);
+          // weatherDailyStore.addDailyWeather([]);
         } catch (error) {
           if (error.response && error.response.status === 404) {
             setInputValError('City not found! Try again...')
@@ -72,13 +75,14 @@ export default function SearchForm () {
         }
       };
       // DAILY FETCH
-    const getDailyResults = async (lat, lon) => {
+    const getDailyResults = async (lon, lat) => {
       try {
         const response = await axios.get(`${API_URL_DAILY}?appid=${MY_API_KEY_DAILY}&lat=${lat}&lon=${lon}`);
         if (response.status === 200) {
+          weatherDailyStore.resetStore();
           weatherDailyStore.addDailyWeather(response.data.list);
         } 
-        weatherDailyStore.addDailyWeather([]);
+          weatherDailyStore.addDailyWeather([]);
       } catch (error) {
         console.error(error.message)
         }

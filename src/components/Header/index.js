@@ -76,7 +76,7 @@ const socialListRender = socialList.map((item, index) => {
       }
     
     return <li key={index} className="social-link-item">
-        <a href={item.url} className="social-link" alt={item.id}><IconComponent sx={{ fontSize: 30 }} md={{ fontSize: 34 }} lg={{ fontSize: 40 }} color="primary"/></a>
+        <a href={item.url} className="social-link" alt={item.id}  target="_blank" rel="noopener noreferrer"><IconComponent sx={{ fontSize: 30 }} md={{ fontSize: 34 }} lg={{ fontSize: 40 }} color="primary"/></a>
     </li>
     }
 )
