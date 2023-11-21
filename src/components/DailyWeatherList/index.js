@@ -139,7 +139,7 @@ const reset = () => {
         <div className="wr-forecast" id="wr-forecast" lang="en">
             <div className={`${containerClassName} ${timeOfDay}`}>
                      
-            <Container className="local-forecast" id=".local-forecast">
+            <Container className="local-forecast" id="local-forecast">
                 <div className="wr-location"> 
                     <div className="location-title-wrapper">
                         <div id="wr-location-name-id" className="wr-location__name">
