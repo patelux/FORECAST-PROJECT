@@ -97,14 +97,30 @@ const forecastList = weatherStoreDaily.map((item, index) => {
     const temperature_min = temperatureInCelcius(item.main?.temp_min);
     const iconUrl = `https://openweathermap.org/img/wn/${item.weather[0]?.icon}@2x.png`;
     const dateTimeMillis = (item.dt + weatherData.timezone) * 1000;
-
+    const temperature = temperatureInCelcius(item.main?.temp);
     const formattedDate = new Date(dateTimeMillis);
     const currentDate =   getOrdinalSuffix(formattedDate.getUTCDate());
     const currentDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(formattedDate);
     const currentMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(formattedDate);
+// change bar color according to temperature
+let barTemperatureclassName;
+if (temperature >= 15 && temperature <= 25) {
+  barTemperatureclassName = "wr-day-carousel__item highup";
+} else if (temperature >= 5 && temperature < 15) {
+  barTemperatureclassName = "wr-day-carousel__item high";
+} else if (temperature >= 0 && temperature < 5) {
+  barTemperatureclassName = "wr-day-carousel__item highlow";
+} else if (temperature >= -5 && temperature < 0) {
+  barTemperatureclassName = "wr-day-carousel__item zero";
+} else if (temperature >= -10 && temperature < -5) {
+  barTemperatureclassName = "wr-day-carousel__item low";
+} else if (temperature < -10) {
+  barTemperatureclassName = "wr-day-carousel__item lowup";
+}
 
+console.log(barTemperatureclassName, temperature);
     return(
-    <div className="wr-day-carousel__item" key={index} >
+    <div className={barTemperatureclassName} key={index} >
         <div
             className="wr-day__content">
             <div className="wr-day__title"

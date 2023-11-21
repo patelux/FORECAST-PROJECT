@@ -22,6 +22,7 @@ export default function DailyWeatherItem(){
         lon: null
       });
 
+    
     const [isClicked, setIsClicked] = useState(false);
 
       useEffect(() => {
@@ -112,6 +113,7 @@ const forecastList = everyFourthItem.map((item, index) => {
   // console.log(item);
     const temperature_max = temperatureInCelcius(item.main?.temp_max);
     const temperature_min = temperatureInCelcius(item.main?.temp_min);
+    const temperature = temperatureInCelcius(item.main?.temp);
     const iconUrl = `https://openweathermap.org/img/wn/${item.weather[0]?.icon}@2x.png`;
     const dateTimeMillis = (item.dt + weatherData.timezone) * 1000;
     const formattedDate = new Date(dateTimeMillis);
@@ -129,13 +131,28 @@ const forecastList = everyFourthItem.map((item, index) => {
       } else {
         humidityIcon = faCloudShowersHeavy;
       }
+// change bar color according to temperature
+    let barTemperatureclassName;
+    if (temperature >= 15 && temperature <= 25) {
+      barTemperatureclassName = "wr-day-carousel__item highup";
+    } else if (temperature >= 5 && temperature < 15) {
+      barTemperatureclassName = "wr-day-carousel__item high";
+    } else if (temperature >= 0 && temperature < 5) {
+      barTemperatureclassName = "wr-day-carousel__item highlow";
+    } else if (temperature >= -5 && temperature < 0) {
+      barTemperatureclassName = "wr-day-carousel__item zero";
+    } else if (temperature >= -10 && temperature < -5) {
+      barTemperatureclassName = "wr-day-carousel__item low";
+    } else if (temperature < -10) {
+      barTemperatureclassName = "wr-day-carousel__item lowup";
+    }
 
     const pressure = item.main?.pressure;
     const pressureIcon = faTachometerAlt;
 
 
     return(
-    <div className="wr-day-carousel__item" key={index} >
+    <div className={barTemperatureclassName} key={index} >
         <a href='/'
             className="wr-day__content" onClick={onClickLinkHandler}>
             <div className="wr-day__title"
