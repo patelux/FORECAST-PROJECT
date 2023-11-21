@@ -527,16 +527,12 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
     }
 }
 #local-forecast.local-forecast.css-1oqqzyl-MuiContainer-root {
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 80px;
-    @include mobile{
-        padding-bottom: 50px;
-    }
+    height: 100%;
 }
+
 
 .wr-day-container.current-forecast, .wr-day-container.daily-forecast{
     display: flex;
