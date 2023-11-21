@@ -58,7 +58,7 @@ export default function SearchForm () {
        
     }
       useEffect(()=>{
-        if(currentLon, currentLat){
+        if(currentLon && currentLat){
         getDailyResults(currentLon, currentLat);
         }
       }, [currentLon, currentLat]);
