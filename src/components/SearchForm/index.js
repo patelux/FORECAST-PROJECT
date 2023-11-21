@@ -22,11 +22,6 @@ export default function SearchForm () {
     const inputRef = useRef(null);
     const [searchVal, setSearchVal] = useState('');
     const [inputValError, setInputValError] = useState('');
-    // const [currentLon, setCurrentLon] = useState(null);
-    // const [currentLat, setCurrentLat] = useState(null);
-    
-    // 123456789
-    // const weatherStoreCurrent = useSyncExternalStore(weatherStore.subscribe, weatherStore.getSnapshot);
     
     const handleChange = (e) => {
         const inputValue = e.target.value;
@@ -55,11 +50,6 @@ export default function SearchForm () {
           setInputValError('Please input right city name!');
         }
     }
-    // useEffect(()=>{
-    //   if(currentLon && currentLat){
-    //   getDailyResults(currentLon, currentLat);
-    //   }
-    // }, [currentLon, currentLat]);
 
     const getResults = async () => {
         try {
@@ -67,12 +57,9 @@ export default function SearchForm () {
           if (response.status === 200) {
             weatherStore.addCurrentWeather(response.data);
             console.log(response.data.coord.lon, response.data.coord.lat);
-            // setCurrentLon(response.data.coord.lon);
-            // setCurrentLat(response.data.coord.lat);
             getDailyResults(response.data.coord.lon, response.data.coord.lat) 
           } 
           weatherStore.addCurrentWeather({});
-          // weatherDailyStore.addDailyWeather([]);
         } catch (error) {
           if (error.response && error.response.status === 404) {
             setInputValError('City not found! Try again...')
