@@ -118,7 +118,6 @@ if (temperature >= 15 && temperature <= 25) {
   barTemperatureclassName = "wr-day-carousel__item lowup";
 }
 
-console.log(barTemperatureclassName, temperature);
     return(
     <div className={barTemperatureclassName} key={index} >
         <div
