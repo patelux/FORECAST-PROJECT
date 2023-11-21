@@ -51,9 +51,9 @@ export default function SearchForm () {
         }
     }
 
-    const getResults = () => {
+    const getResults = async () => {
         try {
-          const response = axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`);
+          const response = await axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`);
           if (response.status === 200) {
             weatherStore.addCurrentWeather(response.data);
             console.log(response.data.coord.lon, response.data.coord.lat);
@@ -69,9 +69,9 @@ export default function SearchForm () {
         }
       };
       // DAILY FETCH
-    const getDailyResults = (lon, lat) => {
+    const getDailyResults = async (lon, lat) => {
       try {
-        const response = axios.get(`${API_URL_DAILY}?appid=${MY_API_KEY_DAILY}&lat=${lat}&lon=${lon}`);
+        const response = await axios.get(`${API_URL_DAILY}?appid=${MY_API_KEY_DAILY}&lat=${lat}&lon=${lon}`);
         if (response.status === 200) {
           weatherDailyStore.resetStore();
           weatherDailyStore.addDailyWeather(response.data.list);
