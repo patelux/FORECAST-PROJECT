@@ -6,7 +6,7 @@ import {
     TextField,
     InputAdornment
 } from "@mui/material";
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 // import { useSyncExternalStore } from 'react';
 import { weatherStore } from '../../store/weather.js';
 import { weatherDailyStore } from '../../store/weatherDaily.js';
@@ -14,9 +14,9 @@ import SearchIcon from '@mui/icons-material/Search';
 
 
 const MY_API_KEY = '5be78af818ee7dcfc981e54df16594ea';
-const API_URL = `https://api.openweathermap.org/data/2.5/weather`;
+const API_URL = `https:/api.openweathermap.org/data/2.5/weather`;
 const MY_API_KEY_DAILY = '6937530a137795579f942882f64a8f1a';
-const API_URL_DAILY = `https://api.openweathermap.org/data/2.5/forecast`;
+const API_URL_DAILY = `https:/api.openweathermap.org/data/2.5/forecast`;
 
 export default function SearchForm () {
     const inputRef = useRef(null);
@@ -51,27 +51,28 @@ export default function SearchForm () {
         if (searchVal.length >= 3) {
             getResults();
 
-
         } else {
           setInputValError('Please input right city name!');
         }
-       
     }
-      useEffect(()=>{
-        if(currentLon && currentLat){
-        getDailyResults(currentLon, currentLat);
-        }
-      }, [currentLon, currentLat]);
+    // useEffect(()=>{
+    //   if(currentLon && currentLat){
+    //   getDailyResults(currentLon, currentLat);
+    //   }
+    // }, [currentLon, currentLat]);
 
-    const getResults = () => {
+    const getResults = async () => {
         try {
-          const response = axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`);
+          const response = await axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`);
           if (response.status === 200) {
             weatherStore.addCurrentWeather(response.data);
+            console.log(response.data.coord.lon, response.data.coord.lat);
             setCurrentLon(response.data.coord.lon);
             setCurrentLat(response.data.coord.lat);
+            getDailyResults(response.data.coord.lon, response.data.coord.lat) 
           } 
           weatherStore.addCurrentWeather({});
+          // weatherDailyStore.addDailyWeather([]);
         } catch (error) {
           if (error.response && error.response.status === 404) {
             setInputValError('City not found! Try again...')
@@ -81,9 +82,9 @@ export default function SearchForm () {
         }
       };
       // DAILY FETCH
-    const getDailyResults = (lon, lat) => {
+    const getDailyResults = async (lon, lat) => {
       try {
-        const response = axios.get(`${API_URL_DAILY}?appid=${MY_API_KEY_DAILY}&lat=${lat}&lon=${lon}`);
+        const response = await axios.get(`${API_URL_DAILY}?appid=${MY_API_KEY_DAILY}&lat=${lat}&lon=${lon}`);
         if (response.status === 200) {
           weatherDailyStore.resetStore();
           weatherDailyStore.addDailyWeather(response.data.list);
