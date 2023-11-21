@@ -6,7 +6,7 @@ import {
     TextField,
     InputAdornment
 } from "@mui/material";
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // import { useSyncExternalStore } from 'react';
 import { weatherStore } from '../../store/weather.js';
 import { weatherDailyStore } from '../../store/weatherDaily.js';
@@ -50,22 +50,29 @@ export default function SearchForm () {
           }
         if (searchVal.length >= 3) {
             getResults();
+
+
         } else {
           setInputValError('Please input right city name!');
         }
+       
     }
+      useEffect(()=>{
+        if(currentLon, currentLat){
+        getDailyResults(currentLon, currentLat);
+        }
+      }, [currentLon, currentLat]);
 
     const getResults = async () => {
         try {
           const response = await axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`);
           if (response.status === 200) {
             weatherStore.addCurrentWeather(response.data);
-            // setCurrentLon(response.data.coord.lon);
-            // setCurrentLat(response.data.coord.lat);
-            getDailyResults(response.data.coord.lon, response.data.coord.lat) 
+            console.log(response.data.coord.lon, response.data.coord.lat);
+            setCurrentLon(response.data.coord.lon);
+            setCurrentLat(response.data.coord.lat);
           } 
           weatherStore.addCurrentWeather({});
-          // weatherDailyStore.addDailyWeather([]);
         } catch (error) {
           if (error.response && error.response.status === 404) {
             setInputValError('City not found! Try again...')
