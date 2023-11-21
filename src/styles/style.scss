@@ -526,10 +526,16 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
         padding-bottom: 50px;
     }
 }
-#local-forecast .MuiContainer-root.MuiContainer-maxWidthLg.local-forecast.css-1qsxih2{
+#local-forecast.local-forecast.css-1oqqzyl-MuiContainer-root {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-bottom: 80px;
+    @include mobile{
+        padding-bottom: 50px;
+    }
 }
 
 .wr-day-container.current-forecast, .wr-day-container.daily-forecast{
