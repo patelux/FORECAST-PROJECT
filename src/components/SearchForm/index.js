@@ -14,16 +14,16 @@ import SearchIcon from '@mui/icons-material/Search';
 
 
 const MY_API_KEY = '5be78af818ee7dcfc981e54df16594ea';
-const API_URL = `https:/api.openweathermap.org/data/2.5/weather`;
+const API_URL = `https://api.openweathermap.org/data/2.5/weather`;
 const MY_API_KEY_DAILY = '6937530a137795579f942882f64a8f1a';
-const API_URL_DAILY = `https:/api.openweathermap.org/data/2.5/forecast`;
+const API_URL_DAILY = `https://api.openweathermap.org/data/2.5/forecast`;
 
 export default function SearchForm () {
     const inputRef = useRef(null);
     const [searchVal, setSearchVal] = useState('');
     const [inputValError, setInputValError] = useState('');
-    const [currentLon, setCurrentLon] = useState(null);
-    const [currentLat, setCurrentLat] = useState(null);
+    // const [currentLon, setCurrentLon] = useState(null);
+    // const [currentLat, setCurrentLat] = useState(null);
     
     // 123456789
     // const weatherStoreCurrent = useSyncExternalStore(weatherStore.subscribe, weatherStore.getSnapshot);
@@ -67,8 +67,8 @@ export default function SearchForm () {
           if (response.status === 200) {
             weatherStore.addCurrentWeather(response.data);
             console.log(response.data.coord.lon, response.data.coord.lat);
-            setCurrentLon(response.data.coord.lon);
-            setCurrentLat(response.data.coord.lat);
+            // setCurrentLon(response.data.coord.lon);
+            // setCurrentLat(response.data.coord.lat);
             getDailyResults(response.data.coord.lon, response.data.coord.lat) 
           } 
           weatherStore.addCurrentWeather({});
