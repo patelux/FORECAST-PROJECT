@@ -40,7 +40,7 @@ export default function CurrentWeatherItem(props){
           setWeatherData({
             currentCity: weatherStoreCurrent.name || '',
             country: weatherStoreCurrent.sys?.country || '',
-            icon: weatherStoreCurrent.weather[0]?.icon || '',
+            icon: weatherStoreCurrent.weather[0]?.icon || '04d',
             main: weatherStoreCurrent.weather[0]?.main || '',
             description: weatherStoreCurrent.weather[0]?.description || '',
             temp_max: weatherStoreCurrent.main.temp_max || null,

@@ -91,18 +91,16 @@ const settings = {
         }
       ]
   };
-// const everyFourthItem = weatherStoreDaily.filter((item, index) => index % 8 === 0);
-// const everyFourthItem = weatherStoreDaily.filter((item, index) => index % 8 === 0);
+
 const forecastList = weatherStoreDaily.map((item, index) => {
     const temperature_max = temperatureInCelcius(item.main?.temp_max);
     const temperature_min = temperatureInCelcius(item.main?.temp_min);
     const iconUrl = `https://openweathermap.org/img/wn/${item.weather[0]?.icon}@2x.png`;
     const dateTimeMillis = (item.dt + weatherData.timezone) * 1000;
-    // const dateTimeMillis = (item.dt + item.timezone) * 1000;
+
     const formattedDate = new Date(dateTimeMillis);
     const currentDate =   getOrdinalSuffix(formattedDate.getUTCDate());
     const currentDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(formattedDate);
-    // const currentDayShort = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(formattedDate);
     const currentMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(formattedDate);
 
     return(
