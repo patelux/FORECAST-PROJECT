@@ -68,7 +68,6 @@ export default function SearchForm () {
           const response = await axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`);
           if (response.status === 200) {
             weatherStore.addCurrentWeather(response.data);
-            console.log(response.data.coord.lon, response.data.coord.lat);
             setCurrentLon(response.data.coord.lon);
             setCurrentLat(response.data.coord.lat);
           } 
