@@ -65,14 +65,14 @@ const settings = {
           breakpoint: 1400,
           settings: {
             slidesToShow: 8,
-            slidesToScroll: 4
+            slidesToScroll: 1
           }
         },
         {
             breakpoint: 1200,
             settings: {
                 slidesToShow: 5,
-                slidesToScroll: 4
+                slidesToScroll: 1
             }
         },
         {
