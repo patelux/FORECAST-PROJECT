@@ -3,13 +3,11 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-// import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-// import Button from '@mui/material/Button';
 import logo from '../../images/logo1.png';
 import MenuItem from '@mui/material/MenuItem';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
@@ -17,9 +15,6 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import PersonIcon from '@mui/icons-material/Person';
 import Face2Icon from '@mui/icons-material/Face2';
-
-// const pages = ['Products', 'Pricing', 'Blog'];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -83,14 +78,15 @@ const socialListRender = socialList.map((item, index) => {
 
   return (
     <AppBar position="static" className='header'>
-      <Container maxWidth="xl" >
+      {/* <Container maxWidth="xl" > */}
+      <div className="container">
         <nav className="main_nav">
            <div className="logo-wrapper">
                 <a href="/" className="logo_link">
                     <img src={logo} alt="logo" className="logo" />
                 </a>
             </div>  
-            <div className="login-wrapper">
+            {/* <div className="login-wrapper">
                 <div id="login-statusbar" className="login-statusbar active">
                     <a id="login-link" className="login-link" href="/" >
                         <PersonIcon fontSize= "large" className="login-img"/>
@@ -103,7 +99,7 @@ const socialListRender = socialList.map((item, index) => {
                         <span id="account-username" className="account-username">Name</span>
                     </a>
                 </div>
-            </div>
+            </div> */}
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' }, order: {xs: -2} }}>
             <IconButton
@@ -154,14 +150,8 @@ const socialListRender = socialList.map((item, index) => {
                 </ul>
             </div>
 
-          {/* <Box  className="nav-list_wrapper"sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
-
-          </Box> */}
-
-          {/* login button */}
-
         </nav>
-      </Container>
+      </div>
     </AppBar>
   );
 }

@@ -84,9 +84,9 @@ export default function SearchForm () {
 
     return (
         <div className="search">
-            <Container>
+            <div className="container">
                 <form onSubmit={onSubmitHandler}>
-                <Grid container spacing={{ xs: 2, md: 3 }} mt={{ xs: 0, md: 0}}  className="search-list">
+                  <Grid container spacing={{ xs: 2, md: 3 }} mt={{ xs: 0, md: 0}}  className="search-list">
                             <Grid item sx={{display: { xs: 'none', sm: 'inline-block' }}} className="search-item" >
                             <p className="search-title">weather</p>
                             </Grid>
@@ -109,10 +109,10 @@ export default function SearchForm () {
                                     variant="outlined"
                                 />
                             </Grid>
-                        </Grid>
-                        <span className='error' role="alert">{inputValError}</span>
+                  </Grid>
+                  <span className='error' role="alert">{inputValError}</span>
                 </form>
-            </Container>
+            </div>
         </div>
 
     )

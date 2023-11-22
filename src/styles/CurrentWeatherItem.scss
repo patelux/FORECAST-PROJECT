@@ -1,7 +1,8 @@
-.local-forecast .current-forecast{
-    margin-bottom: 80px;
+.current-forecast{
+    // margin-bottom: 80px;
+    width: 100%;
     @include mobile {
-        margin-bottom: 5px;
+        // margin-bottom: 50px;
     }
     .wr-day-carousel__item {
         position: relative;
@@ -388,7 +389,7 @@
         }
     }
 }
-.local-forecast .current-forecast{
+.current-forecast{
     .wr-day-carousel__item.highup {
         position: relative;
         min-height: 188px;
