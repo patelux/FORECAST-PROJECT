@@ -132,7 +132,7 @@ const pressure = weatherData.pressure;
 
   // change bar color according to temperature
   let barTemperatureclassName;
-  if (temperature >= 15 && temperature <= 25) {
+  if (temperature >= 15) {
     barTemperatureclassName = "wr-day-carousel__item highup";
   } else if (temperature >= 5 && temperature < 15) {
     barTemperatureclassName = "wr-day-carousel__item high";

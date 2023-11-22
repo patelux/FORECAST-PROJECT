@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../../images/logo1.png';
+import logo from '../../images/logo1.webp';
 import MenuItem from '@mui/material/MenuItem';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';

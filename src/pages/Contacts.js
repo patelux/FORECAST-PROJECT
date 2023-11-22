@@ -1,6 +1,6 @@
 // import { useSyncExternalStore, useState } from 'react';
 // import UserInfo from '../components/UserInfo/UserInfo';
-import photo from '../images/photo4.jpg';
+import photo from '../images/photo4.webp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 

@@ -436,13 +436,13 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
         background-image: url(../images/day/sunny-day-tablet.jpg);
     }
     @include mobile{
-        background-image: url(../images/day/sunny-day-mobile.jpg);
+        background-image: url(../images/day/sunny-day-mobile.webp);
         @media screen and (min-height: 0px) and (max-height: 670px){
             .wr-day-container{height: 100%;}
         }
     }
     @include smallmobile{
-        background-image: url(../images/day/sunny-day-smallmobile.jpg);     
+        background-image: url(../images/day/sunny-day-smallmobile.webp);     
     }
 
 &.clouds{
@@ -451,10 +451,10 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
         background-image: url(../images/day/cloud-day-tablet.jpg);
     }
     @include mobile{
-        background-image: url(../images/day/cloud-day-mobile.jpg);
+        background-image: url(../images/day/cloud-day-mobile.webp);
     }
     @include smallmobile{
-        background-image: url(../images/day/cloud-day-smallmobile.jpg);     
+        background-image: url(../images/day/cloud-day-smallmobile.webp);     
     }
 }
 &.rain{
@@ -487,10 +487,10 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
         background-image: url(../images/day/sunny-day-tablet.jpg);
     }
     @include mobile{
-        background-image: url(../images/day/sunny-day-mobile.jpg);
+        background-image: url(../images/day/sunny-day-mobile.webp);
     }
     @include smallmobile{
-        background-image: url(../images/day/sunny-day-smallmobile.jpg);     
+        background-image: url(../images/day/sunny-day-smallmobile.webp);     
     }
 }
 &.night {
