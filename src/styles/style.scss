@@ -529,6 +529,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
     width: 100%;
     color: $secondaryTextColor;
     padding: 20px 10px 20px;
+    margin-bottom: 10px;
     @include smallmobile{
         flex-direction: column;
         justify-content: flex-start;
