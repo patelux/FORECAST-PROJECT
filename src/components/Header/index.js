@@ -7,14 +7,14 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
+// import Container from '@mui/material/Container';
 import logo from '../../images/logo1.png';
 import MenuItem from '@mui/material/MenuItem';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import PersonIcon from '@mui/icons-material/Person';
-import Face2Icon from '@mui/icons-material/Face2';
+// import PersonIcon from '@mui/icons-material/Person';
+// import Face2Icon from '@mui/icons-material/Face2';
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -48,8 +48,8 @@ useEffect(()=> {
 }, []);
 
 const navListRender = navList.map((item, index) => {
-    const url = item.id ? item.url+'/'+item.id : item.url;
-    return <li className="nav-item" key={index} onClick={handleCloseNavMenu}><NavLink to={url}className="nav_link"><span className="link-subtitle">{item.title}</span></NavLink>
+    const url = item.url;
+    return <li className="nav-item" key={index} onClick={handleCloseNavMenu}><NavLink to={url} className="nav_link"><span className="link-subtitle">{item.title}</span></NavLink>
     </li>
 })
 

@@ -180,7 +180,7 @@ const reset = () => {
               <CurrentWeatherItem  setTimeOfDayLocal={setTimeOfDay} setContainerClassNameLocal={setContainerClassName} setCurrentLocationLocal={setCurrentLocation}/> 
               </div> : <p></p>}   
               {(weatherStoreDaily).length > 0 ? <div className="daily-forecast d-none" id="daily"><DailyWeatherItem /></div> : <p></p> }
-              {(weatherStoreDaily).length > 0 ? <div className="daily-forecast d-none" id="hourly"><HourlyWeatherItem /></div> : <p></p> }
+              {(weatherStoreDaily).length > 0 ? <div className="hourly-forecast d-none" id="hourly"><HourlyWeatherItem /></div> : <p></p> }
           </Container>
       </div>
     </div>

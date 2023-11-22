@@ -2,7 +2,6 @@ import axios from "axios";
 import {
     Grid,
     Button,
-    Container,
     TextField,
     InputAdornment
 } from "@mui/material";
@@ -62,7 +61,7 @@ export default function SearchForm () {
           weatherStore.addCurrentWeather({});
         } catch (error) {
           if (error.response && error.response.status === 404) {
-            setInputValError('City not found! Try again...')
+            setInputValError('City is not found! Try again...')
           } else {
             setInputValError(`Something went wrong, try again later..`)
           }

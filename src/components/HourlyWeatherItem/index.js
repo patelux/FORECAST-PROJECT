@@ -57,33 +57,40 @@ const getOrdinalSuffix = (day) => {
 const settings = {
       dots: false,
       infinite: true,
-      speed: 500,
-      slidesToShow: 5,
-      slidesToScroll: 1,
+      speed: 700,
+      slidesToShow: 10,
+      slidesToScroll: 8,
       responsive: [
         {
           breakpoint: 1400,
           settings: {
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            infinite: true
+            slidesToShow: 8,
+            slidesToScroll: 4
           }
         },
         {
             breakpoint: 1200,
             settings: {
-                slidesToShow: 3,
+                slidesToShow: 5,
+                slidesToScroll: 4
             }
         },
         {
           breakpoint: 800,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 600,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1
           }
         },
         {
-          breakpoint: 500,
+          breakpoint: 360,
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1

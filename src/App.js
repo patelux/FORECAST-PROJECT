@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 
 // pages
 import Home from './pages/Home';
+import Contacts from './pages/Contacts'
 import Default from './layouts/Default';
 
 
@@ -14,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Default />}>
           <Route index element={<Home />} />
-          {/* <Route index element={<Contacts />} /> */}
+          <Route path="contacts" element={<Contacts />} />
         </Route>
       </Routes>
     </div>
