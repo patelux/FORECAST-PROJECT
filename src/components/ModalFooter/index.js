@@ -51,14 +51,14 @@ export default function ModalFooter () {
   const onClickHandler = (e) => {
     e.preventDefault();
     setIsModalOpen(true)}
-
+    const screenWidth = window.innerWidth;
   return (
     <>
       <div className="footer-text">
         Developed by
-        <a href="/" data-open-modal className="footer-text-right" onClick={onClickHandler}>
+        {screenWidth > 767 ? <a href="/" data-open-modal className="footer-text-right" onClick={onClickHandler} >
           Patelux
-        </a>
+        </a> : <span>{` Patelux `}</span>}
       </div>
       <div className="backdrop-team is-hidden" data-backdrop>
         <div className="modal-team">
