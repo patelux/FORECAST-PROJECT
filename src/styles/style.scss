@@ -515,21 +515,9 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
     padding: 0px 0px 90px 0px;
 }
 }
-
 @media screen and (min-height: 0px) and (max-height: 690px){
     .wr-day-container{height: 100%;}
 }
-
-// .local-forecast {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-between;
-// }
-// .wr-day-container .container {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-between;
-// }
 .wr-location {
     display: flex;
     flex-wrap: nowrap;
@@ -636,7 +624,6 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
     }
 }
 .btn-wrapper .wr-location__overview{
-    // width: 100%;
     min-width: 100px;
     font-size: 16px;
     text-transform: uppercase;

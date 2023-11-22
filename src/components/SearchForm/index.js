@@ -6,7 +6,6 @@ import {
     InputAdornment
 } from "@mui/material";
 import { useRef, useState } from 'react';
-// import { useSyncExternalStore } from 'react';
 import { weatherStore } from '../../store/weather.js';
 import { weatherDailyStore } from '../../store/weatherDaily.js';
 import SearchIcon from '@mui/icons-material/Search';
@@ -55,7 +54,6 @@ export default function SearchForm () {
           const response = await axios.get(`${API_URL}?appid=${MY_API_KEY}&q=${searchVal}`);
           if (response.status === 200) {
             weatherStore.addCurrentWeather(response.data);
-            console.log(response.data.coord.lon, response.data.coord.lat);
             getDailyResults(response.data.coord.lon, response.data.coord.lat) 
           } 
           weatherStore.addCurrentWeather({});

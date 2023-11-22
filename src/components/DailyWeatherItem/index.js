@@ -1,4 +1,3 @@
-// import axios from "axios";
 import { useSyncExternalStore } from 'react';
 import { weatherStore  } from '../../store/weather.js';
 import { weatherDailyStore } from '../../store/weatherDaily.js';
@@ -110,7 +109,6 @@ const settings = {
   };
 const everyFourthItem = weatherStoreDaily.filter((item, index) => index % 8 === 0);
 const forecastList = everyFourthItem.map((item, index) => {
-  // console.log(item);
     const temperature_max = temperatureInCelcius(item.main?.temp_max);
     const temperature_min = temperatureInCelcius(item.main?.temp_min);
     const temperature = temperatureInCelcius(item.main?.temp);
@@ -149,7 +147,6 @@ const forecastList = everyFourthItem.map((item, index) => {
 
     const pressure = item.main?.pressure;
     const pressureIcon = faTachometerAlt;
-
 
     return(
     <div className={barTemperatureclassName} key={index} >

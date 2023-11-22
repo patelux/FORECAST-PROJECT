@@ -7,14 +7,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-// import Container from '@mui/material/Container';
 import logo from '../../images/logo1.png';
 import MenuItem from '@mui/material/MenuItem';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
-// import PersonIcon from '@mui/icons-material/Person';
-// import Face2Icon from '@mui/icons-material/Face2';
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -78,7 +75,6 @@ const socialListRender = socialList.map((item, index) => {
 
   return (
     <AppBar position="static" className='header'>
-      {/* <Container maxWidth="xl" > */}
       <div className="container">
         <nav className="main_nav">
            <div className="logo-wrapper">
@@ -86,21 +82,6 @@ const socialListRender = socialList.map((item, index) => {
                     <img src={logo} alt="logo" className="logo" />
                 </a>
             </div>  
-            {/* <div className="login-wrapper">
-                <div id="login-statusbar" className="login-statusbar active">
-                    <a id="login-link" className="login-link" href="/" >
-                        <PersonIcon fontSize= "large" className="login-img"/>
-                        <span id="login-username" className="login-username">Sign in</span>
-                    </a>
-                </div>
-                <div id="account-statusbar" className="account-statusbar">
-                    <a id="account-link" className="account-link" href="/" >
-                        <Face2Icon fontSize= "large" className="account-img"/>
-                        <span id="account-username" className="account-username">Name</span>
-                    </a>
-                </div>
-            </div> */}
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' }, order: {xs: -2} }}>
             <IconButton
               size="large"

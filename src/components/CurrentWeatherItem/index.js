@@ -145,8 +145,7 @@ const pressure = weatherData.pressure;
   } else if (temperature < -10) {
     barTemperatureclassName = "wr-day-carousel__item lowup";
   }
-  
-  console.log(barTemperatureclassName, temperature);
+
     return (  
             <div className={barTemperatureclassName} >
                 <div className="wr-day__content">
