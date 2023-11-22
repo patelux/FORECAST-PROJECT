@@ -500,10 +500,10 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
         background-image: linear-gradient(0deg, rgba(255,255,255,0.12) 100%, rgba(255,255,255,0.12) 100%), url(../images/night/night-tablet.jpg);
     }
     @include mobile{
-        background-image: linear-gradient(0deg, rgba(255,255,255,0.12) 100%, rgba(255,255,255,0.12) 100%), url(../images/night/night-mobile.jpg);
+        background-image: linear-gradient(0deg, rgba(255,255,255,0.12) 100%, rgba(255,255,255,0.12) 100%), url(../images/night/night-mobile.webp);
     }
     @include smallmobile{
-        background-image: linear-gradient(0deg, rgba(255,255,255,0.12) 100%, rgba(255,255,255,0.12) 100%), url(../images/night/night-smallmobile.jpg);     
+        background-image: linear-gradient(0deg, rgba(255,255,255,0.12) 100%, rgba(255,255,255,0.12) 100%), url(../images/night/night-smallmobile.webp);     
     }
 }
 .container{
