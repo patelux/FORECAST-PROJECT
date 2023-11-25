@@ -67,9 +67,8 @@ const onClickLinkHandler = (e) => {
         }
         });
     if (!isClicked) {
-        
         setIsClicked(true);
-        e.currentTarget.parentElement.classList.toggle('active');
+        e.currentTarget.parentElement.classList.add('active');
       } 
     if (isClicked) {
         setIsClicked(false);
