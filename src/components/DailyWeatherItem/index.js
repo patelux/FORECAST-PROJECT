@@ -20,8 +20,6 @@ export default function DailyWeatherItem(){
         lat: null,
         lon: null
       });
-   
-    const [isClicked, setIsClicked] = useState(false);
 
       useEffect(() => {
         if (weatherStoreCurrent) {
@@ -66,14 +64,7 @@ const onClickLinkHandler = (e) => {
           element.classList.remove('active');
         }
         });
-    if (!isClicked) {
-        setIsClicked(true);
-        e.currentTarget.parentElement.classList.add('active');
-      } 
-    if (isClicked) {
-        setIsClicked(false);
-        e.currentTarget.parentElement.classList.remove('active');
-      }       
+        e.currentTarget.parentElement.classList.toggle('active');      
 };
 const settings = {
       dots: false,
