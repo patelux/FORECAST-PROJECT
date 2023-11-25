@@ -20,8 +20,7 @@ export default function DailyWeatherItem(){
         lat: null,
         lon: null
       });
-
-    
+   
     const [isClicked, setIsClicked] = useState(false);
 
       useEffect(() => {
@@ -58,12 +57,20 @@ const getOrdinalSuffix = (day) => {
     }
 };
 
-
+let itemArray = [];
 const onClickLinkHandler = (e) => {
     e.preventDefault();
+    itemArray = Array.from(document.querySelectorAll('[data-daily-item]'));
+    console.log(itemArray);
+    itemArray.forEach((element) => {
+        if(element !== e.currentTarget.parentElement)  {
+          element.classList.remove('active');
+        }
+        });
     if (!isClicked) {
+        
         setIsClicked(true);
-        e.currentTarget.parentElement.classList.add('active');
+        e.currentTarget.parentElement.classList.toggle('active');
       } 
     if (isClicked) {
         setIsClicked(false);
@@ -149,7 +156,7 @@ const forecastList = everyFourthItem.map((item, index) => {
     const pressureIcon = faTachometerAlt;
 
     return(
-    <div className={barTemperatureclassName} key={index} >
+    <div className={barTemperatureclassName} key={index} data-daily-item>
         <a href='/'
             className="wr-day__content" onClick={onClickLinkHandler}>
             <div className="wr-day__title"
