@@ -130,7 +130,7 @@ const forecastList = everyFourthItem.map((item, index) => {
         humidityIcon = faCloudShowersHeavy;
       }
 // change bar color according to temperature
-    let barTemperatureclassName;
+    let barTemperatureclassName = 'wr-day-carousel__item';
     if (temperature >= 15) {
       barTemperatureclassName = "wr-day-carousel__item highup";
     } else if (temperature >= 5 && temperature < 15) {

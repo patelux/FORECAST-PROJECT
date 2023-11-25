@@ -110,7 +110,7 @@ const forecastList = weatherStoreDaily.map((item, index) => {
     const currentDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(formattedDate);
     const currentMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(formattedDate);
 // change bar color according to temperature
-let barTemperatureclassName;
+let barTemperatureclassName = 'wr-day-carousel__item';
 if (temperature >= 15) {
   barTemperatureclassName = "wr-day-carousel__item highup";
 } else if (temperature >= 5 && temperature < 15) {
