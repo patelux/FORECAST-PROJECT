@@ -61,7 +61,6 @@ let itemArray = [];
 const onClickLinkHandler = (e) => {
     e.preventDefault();
     itemArray = Array.from(document.querySelectorAll('[data-daily-item]'));
-    console.log(itemArray);
     itemArray.forEach((element) => {
         if(element !== e.currentTarget.parentElement)  {
           element.classList.remove('active');
