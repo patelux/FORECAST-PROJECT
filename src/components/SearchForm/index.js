@@ -10,8 +10,8 @@ import { weatherStore } from '../../store/weather.js';
 import { weatherDailyStore } from '../../store/weatherDaily.js';
 import SearchIcon from '@mui/icons-material/Search';
 
-
 const MY_API_KEY = '5be78af818ee7dcfc981e54df16594ea';
+const API_URL_GEOCODING = `https://api.openweathermap.org/geo/1.0/direct`;
 const API_URL = `https://api.openweathermap.org/data/2.5/weather`;
 const MY_API_KEY_DAILY = '6937530a137795579f942882f64a8f1a';
 const API_URL_DAILY = `https://api.openweathermap.org/data/2.5/forecast`;
@@ -20,10 +20,12 @@ export default function SearchForm () {
     const inputRef = useRef(null);
     const [searchVal, setSearchVal] = useState('');
     const [inputValError, setInputValError] = useState('');
+    const [geocodingResults, setGeocodingResults] = useState([]);
     
     const handleChange = (e) => {
-        const inputValue = e.target.value;
-        if (inputValue.length !== 0 && !/^[A-Za-z]+$/.test(inputValue) ){
+        const inputValue = e.target.value.trim().toLowerCase();
+        // console.log(inputValue);
+        if (inputValue.length !== 0 && !/^[A-Za-zА-Яа-я]+$/.test(inputValue) ){
             setInputValError('Only letters are allowed!');
         }
         else if (inputValue.length < 3){
@@ -35,15 +37,15 @@ export default function SearchForm () {
         }
       };
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
         if (searchVal.trim() === '') {
             setInputValError('Please input city name!');
             return;
           }
         if (searchVal.length >= 3) {
+            getGeocodingResults();
             getResults();
-
         } else {
           setInputValError('Please input right city name!');
         }
@@ -65,7 +67,19 @@ export default function SearchForm () {
           }
         }
       };
-      // DAILY FETCH
+      // GEOCODING FETCH
+      const getGeocodingResults = async () => {
+        try {
+          const response = await axios.get(`${API_URL_GEOCODING}?q=${searchVal}&limit=5&appid=${MY_API_KEY}`);
+          if (response.status === 200) {
+            setGeocodingResults(response.data);
+            console.log(geocodingResults[1]);
+          } 
+        } catch (error) {
+          console.error(error.message)
+          }
+        }
+     // DAILY FETCH   
     const getDailyResults = async (lon, lat) => {
       try {
         const response = await axios.get(`${API_URL_DAILY}?appid=${MY_API_KEY_DAILY}&lat=${lat}&lon=${lon}`);
