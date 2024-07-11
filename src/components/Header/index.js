@@ -78,10 +78,10 @@ const socialListRender = socialList.map((item, index) => {
       <div className="container">
         <nav className="main_nav">
            <div className="logo-wrapper">
-                <a href="/" className="logo_link">
+              <NavLink to="/" className="logo_link">
                     <img src={logo} alt="logo" className="logo" />
-                </a>
-            </div>  
+              </NavLink>
+           </div>  
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' }, order: {xs: -2} }}>
             <IconButton
               size="large"
