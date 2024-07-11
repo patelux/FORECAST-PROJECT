@@ -59,7 +59,9 @@ body {
   width: 90%;
   margin: 0 auto;
 }
-
+.container.MuiContainer-root.MuiContainer-maxWidthLg.local-forecast.css-1qsxih2 {
+  height: 100%;
+}
 @media screen and (min-width: 0px) and (max-width: 767px) {
   .daily-forecast {
     margin-bottom: 5px;
