@@ -89,6 +89,18 @@
     line-height: 2;
     margin-bottom: 40px;
     margin-top: 0;
+    @include tablet {
+        font-size: 14px;
+        line-height: 1.17;
+        margin-bottom: 10px;
+    }
+    @include mobile{
+        font-size: 12px;
+       
+    }
+    @include smallmobile{
+        font-size: 10px;   
+    }
 }
 
 .team-list {

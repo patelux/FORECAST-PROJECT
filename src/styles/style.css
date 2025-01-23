@@ -2109,9 +2109,6 @@ header.css-hip9hq-MuiPaper-root-MuiAppBar-root {
   .main_nav {
     padding: 0 8px;
   }
-  .team-title {
-    font-size: 10px;
-  }
 }
 
 .logo-wrapper {
@@ -2132,9 +2129,6 @@ header.css-hip9hq-MuiPaper-root-MuiAppBar-root {
     flex-grow: 1;
     text-align: center;
     vertical-align: baseline;
-  }
-  .team-title {
-    font-size: 14px;
   }
 }
 
