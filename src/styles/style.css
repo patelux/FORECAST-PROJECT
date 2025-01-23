@@ -1978,7 +1978,7 @@ body {
 .team-title {
   color: #149edc;
   text-transform: uppercase;
-  font-size: 30px;
+  /* font-size: 30px; */
   line-height: 2;
   margin-bottom: 40px;
   margin-top: 0;
