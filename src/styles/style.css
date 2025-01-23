@@ -1936,7 +1936,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: max-content;
   padding: 40px 20px;
   background-color: #FFFFFF;
   margin: 0 auto;
